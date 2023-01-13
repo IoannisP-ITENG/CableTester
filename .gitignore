@@ -100,3 +100,4 @@ ENV/
 
 _local
 .local
+*.bak

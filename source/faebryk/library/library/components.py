@@ -9,7 +9,6 @@ from faebryk.library.library.interfaces import Electrical, Power
 from faebryk.library.library.components import Resistor, LED
 from faebryk.library.library.parameters import TBD
 from faebryk.library.util import times
-from faebryk.library.kicad import KicadFootprint
 
 
 class MOSFET(Component):
@@ -157,8 +156,40 @@ class USB_C_Receptacle(Component):
 
         self.IFs = _IFs(self)
 
-        #TODO
-        #self.add_trait(has_defined_footprint(KicadFootprint()))
+
+        self.add_trait(has_defined_footprint_pinmap(
+            {
+                "A1": self.IFs.gnd[0],
+                "A2": self.IFs.tx1.IFs.p,
+                "A3": self.IFs.tx1.IFs.n,
+                "A4": self.IFs.vbus[0],
+                "A5": self.IFs.cc1,
+                "A6": self.IFs.d1.IFs.p,
+                "A7": self.IFs.d1.IFs.n,
+                "A8": self.IFs.sbu1,
+                "A9": self.IFs.vbus[1],
+                "A10": self.IFs.rx2.IFs.n,
+                "A11": self.IFs.rx2.IFs.p,
+                "A12": self.IFs.gnd[1],
+
+                "B1": self.IFs.gnd[2],
+                "B2": self.IFs.tx2.IFs.p,
+                "B3": self.IFs.tx2.IFs.n,
+                "B4": self.IFs.vbus[2],
+                "B5": self.IFs.cc2,
+                "B6": self.IFs.d2.IFs.p,
+                "B7": self.IFs.d2.IFs.n,
+                "B8": self.IFs.sbu2,
+                "B9": self.IFs.vbus[3],
+                "B10": self.IFs.rx1.IFs.n,
+                "B11": self.IFs.rx1.IFs.p,
+                "B12": self.IFs.gnd[3],
+
+                "0": self.IFs.shield,
+            }
+        ))
+
+        self.add_trait(has_defined_type_description(f"x"))
 
 class RJ45_Receptacle(Component):
     def __init__(self) -> None:
@@ -169,3 +200,15 @@ class RJ45_Receptacle(Component):
             twisted_pairs = times(4, DifferentialPair)
 
         self.IFs = _IFs(self)
+
+        self.add_trait(has_defined_footprint_pinmap({
+            "1": self.IFs.twisted_pairs[0].IFs.p,
+            "2": self.IFs.twisted_pairs[0].IFs.n,
+            "3": self.IFs.twisted_pairs[1].IFs.p,
+            "4": self.IFs.twisted_pairs[1].IFs.n,
+            "5": self.IFs.twisted_pairs[2].IFs.p,
+            "6": self.IFs.twisted_pairs[2].IFs.n,
+            "7": self.IFs.twisted_pairs[3].IFs.p,
+            "8": self.IFs.twisted_pairs[3].IFs.n,
+        }))
+        self.add_trait(has_defined_type_description(f"x"))

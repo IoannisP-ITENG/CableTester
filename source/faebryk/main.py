@@ -1,270 +1,167 @@
-# This file is part of the faebryk project
-# SPDX-License-Identifier: MIT
-
 """
 TODO: Explain file
 """
 
+import click
 import logging
 from pathlib import Path
-from typing import List
+import sys
+from typing import Dict, List
+import subprocess
+from collections import defaultdict
 
-logger = logging.getLogger("main")
 
-
-from faebryk.exporters.netlist.graph import (
-    make_graph_from_components,
-    make_t1_netlist_from_graph,
-)
+# local imports
+from cable_tester import Cable_Tester
+from library.kicadpcb import PCB, Footprint, Text, At
+import library.lcsc
 
 
 # function imports
 from faebryk.exporters.netlist.kicad.netlist_kicad import from_faebryk_t2_netlist
 from faebryk.exporters.netlist.netlist import make_t2_netlist_from_t1
-
-# library imports
-from faebryk.library.core import Component
-from faebryk.library.library.interfaces import Electrical, Power
-from faebryk.library.library.components import Resistor
-from faebryk.library.library.parameters import Constant
-from faebryk.library.trait_impl.component import has_symmetric_footprint_pinmap
-from faebryk.library.traits.component import has_footprint
-
-from faebryk.library.util import times
-
-# Project library imports
-from library.library.components import (
-    MOSFET,
-    DifferentialPair,
-    PowerSwitch,
-    PoweredLED,
-    RJ45_Receptacle,
-    USB_C_Receptacle,
+from faebryk.exporters.netlist.graph import (
+    make_graph_from_components,
+    make_t1_netlist_from_graph,
 )
 
-K = 1000
-M = 1000_000
-G = 1000_000_000
+from faebryk.library.core import Component
 
-n = 0.001 * 0.001 * 0.001
-u = 0.001 * 0.001
+# logging settings
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
+logging.getLogger(library.lcsc.__name__).setLevel(logging.DEBUG)
+
+def write_netlist(components: List[Component], path: Path) -> bool:
+    t1_ = make_t1_netlist_from_graph(make_graph_from_components(components))
+    netlist = from_faebryk_t2_netlist(make_t2_netlist_from_t1(t1_))
 
 
-class USB_C_PSU(Component):
-    def __init__(self) -> None:
-        super().__init__()
+    if path.exists():
+        old_netlist = path.read_text()
+        #TODO this does not work!
+        if old_netlist == netlist:
+            return False
+        backup_path = path.with_suffix(path.suffix + ".bak")
+        logger.info(f"Backup old netlist at {backup_path}")
+        backup_path.write_text(old_netlist)
 
-        # interfaces
-        class _IFs(Component.InterfacesCls()):
-            power_out = Power()
+    logger.info("Writing Experiment netlist to {}".format(path.resolve()))
+    path.write_text(netlist, encoding="utf-8")
 
-        self.IFs = _IFs(self)
+    # from faebryk.exporters.netlist.netlist import render_graph
+    # plt = render_graph(t1_)
+    # plt.show()
 
-        # components
-        class _CMPs(Component.ComponentsCls()):
-            usb = USB_C_Receptacle()
-            configuration_resistors = times(2, lambda: Resistor(Constant(5.1*K)))
+    # TODO faebryk/kicad bug: net names cant be too long -> pcb file can't save
 
-        self.CMPs = _CMPs(self)
+    return True
 
-        self.IFs.power_out.IFs.hv.connect_all(self.CMPs.usb.IFs.vbus)
-        self.IFs.power_out.IFs.lv.connect_all(self.CMPs.usb.IFs.gnd)
 
-        # configure as ufp with 5V@max3A
-        self.CMPs.usb.IFs.cc1.connect_via(self.CMPs.configuration_resistors[0], self.IFs.power_out.IFs.lv)
-        self.CMPs.usb.IFs.cc2.connect_via(self.CMPs.configuration_resistors[1], self.IFs.power_out.IFs.lv)
+def transform_pcb(pcb: PCB):
+    # positioning -------------------------------------------------------------
+    groups: Dict[str, List[Footprint]] = defaultdict(lambda: [])
+    for f in pcb.footprints:
+        name = f.reference.text.split(".")
+        if name[0] != "tester":
+            continue
+        group_name = name[1]
+        if "Receptacle" in group_name:
+            continue
+        groups[group_name].append(f)
 
-class LEDIndicator(Component):
-    def __init__(self, logic_low: bool, normally_on: bool) -> None:
-        super().__init__()
-
-        # interfaces
-        class _IFs(Component.InterfacesCls()):
-            # hv = high #TODO replace with Logical
-            logic_in = Electrical()
-            power_in = Power()
-
-        self.IFs = _IFs(self)
-
-        # components
-        class _CMPs(Component.ComponentsCls()):
-            led = PoweredLED()
-            power_switch = PowerSwitch(
-                lowside=not logic_low, normally_closed=normally_on
-            )
-
-        self.CMPs = _CMPs(self)
-
-        #
-        self.CMPs.led.IFs.power.connect_via(self.CMPs.power_switch, self.IFs.power_in)
-        self.CMPs.power_switch.IFs.logic_in.connect(self.IFs.logic_in)
-
-class PairTester(Component):
-    def __init__(self, logic_low: bool = False) -> None:
-        super().__init__()
-
-        # interfaces
-        class _IFs(Component.InterfacesCls()):
-            power_in = Power()
-            # TODO logical?
-            wires = times(2, Electrical)
-
-        self.IFs = _IFs(self)
-
-        # components
-        class _CMPs(Component.ComponentsCls()):
-            indicator = LEDIndicator(logic_low=logic_low, normally_on=False)
-
-        self.CMPs = _CMPs(self)
-
-        #
-        self.CMPs.indicator.IFs.power_in.connect(self.IFs.power_in)
-
-        # connect logic high to indicator through wire pair
-        self.IFs.wires[0].connect(
-            self.IFs.power_in.IFs.lv if logic_low else self.IFs.power_in.IFs.hv
-        )
-        self.IFs.wires[1].connect(self.CMPs.indicator.IFs.logic_in)
-
-class Tester(Component):
-    def __init__(self) -> None:
-        super().__init__()
-
-        # interfaces
-        class _IFs(Component.InterfacesCls()):
-            power_in = Power()
-
-        self.IFs = _IFs(self)
-
-        # components
-        class _CMPs(Component.ComponentsCls()):
-            cc1 = PairTester()
-            cc2 = PairTester()
-            sbu1 = PairTester()
-            sbu2 = PairTester()
-            shield = PairTester(logic_low=True)  # in-case connected to gnd
-            # power
-            gnd = times(
-                4, lambda: PairTester(logic_low=True)
-            )  # logic_low to give emarker power
-            vbus = times(4, PairTester)
-            # diffpairs: p, n
-            pair1_rx1 = times(2, PairTester)
-            pair2_rx2 = times(2, PairTester)
-            pair3_tx1 = times(2, PairTester)
-            pair4_tx2 = times(2, PairTester)
-            d1 = times(2, PairTester)
-            d2 = times(2, PairTester)
-            # connectors -------
-            usb_c = times(2, USB_C_Receptacle)
-            rj45 = times(2, RJ45_Receptacle)
-
-        self.CMPs = _CMPs(self)
-
-        # connect power to testers
-        for tester in self.CMPs.get_all():
-            if not isinstance(tester, PairTester):
+    touched_fps : List[Footprint] = []
+    for i, (name, g) in enumerate(sorted(groups.items(), key=lambda x: x[0])):
+        fs = {f.reference.text.split(".")[-1].split("[")[0]: f for f in g}
+        for j, (fref, f) in enumerate(
+            [
+                (k, fs[k])
+                for k in [
+                    "pull_resistor",
+                    "mosfet",
+                    "current_limiting_resistor",
+                    "led",
+                ]
+            ]
+        ):
+            # print(i, j, fref)
+            if any(filter(lambda x: x.text == "FBRK:notouch", f.user_text)):
+                logger.warning(f"Skipped no touch component: {f.name}")
                 continue
+            touched_fps.append(f)
+            f.at.coord = (50 + j * 4, 15 + i * 4, 0)
 
-            tester.IFs.power_in.connect(self.IFs.power_in)
+    # --------------------------------------------------------------------------
 
-        # connect receptacles to testers
-        for i in range(2):
-            def connect_diffpair_to_tester_pair(
-                diffpair: DifferentialPair, testerpair: List[PairTester]
-            ):
-                diffpair.IFs.p.connect(testerpair[0].IFs.wires[i])
-                diffpair.IFs.n.connect(testerpair[1].IFs.wires[i])
+    # rename, resize, relayer text
+    for f in pcb.footprints:
+        # ref
+        f.reference.layer = "User.8"
+        f.reference.at.coord = (0, 0, 0)
+        f.reference.font = (0.5, 0.5, 0.075)
 
-            # usb ------
-            usb_i = self.CMPs.usb_c[i].IFs
+        # user
+        name = f.reference.text.split(".")
+        user_text = next(filter(lambda x: not x.text.startswith("FBRK:"), f.user_text))
+        user_text.text = f"{name[1]}.{name[-1].split('[')[0]}"
+        # user_text.layer = "F.SilkS"
+        user_text.layer = "User.7"
+        user_text.font = (0.5, 0.5, 0.075)
 
-            usb_i.cc1.connect(self.CMPs.cc1.IFs.wires[i])
-            usb_i.cc2.connect(self.CMPs.cc2.IFs.wires[i])
-            usb_i.sbu1.connect(self.CMPs.sbu1.IFs.wires[i])
-            usb_i.sbu2.connect(self.CMPs.sbu2.IFs.wires[i])
-            usb_i.shield.connect(self.CMPs.shield.IFs.wires[i])
-            # power
-            for cable_if, tester in list(zip(usb_i.gnd, self.CMPs.gnd)) + list(zip(
-                usb_i.vbus, self.CMPs.vbus
-            )):
-                cable_if.connect(tester.IFs.wires[i])
-            # diffpairs
-            connect_diffpair_to_tester_pair(usb_i.rx1, self.CMPs.pair1_rx1)
-            connect_diffpair_to_tester_pair(usb_i.rx2, self.CMPs.pair2_rx2)
-            connect_diffpair_to_tester_pair(usb_i.tx1, self.CMPs.pair3_tx1)
-            connect_diffpair_to_tester_pair(usb_i.tx2, self.CMPs.pair4_tx2)
-            connect_diffpair_to_tester_pair(usb_i.d1, self.CMPs.d1)
-            connect_diffpair_to_tester_pair(usb_i.d2, self.CMPs.d2)
+    for i,f in enumerate(touched_fps):
+        if any(filter(lambda x: x.text == "FBRK:autoplaced", f.user_text)):
+            continue
+        f.append(Text.factory(text="FBRK:autoplaced", at=At.factory((0,0,0)), font=(1,1,0.15), tstamp=str(i), layer="User.5"))
 
-            # rj45 -----
-            for cable_pair, tester_pair in zip(
-                self.CMPs.rj45[i].IFs.twisted_pairs,
-                [
-                    self.CMPs.pair1_rx1,
-                    self.CMPs.pair2_rx2,
-                    self.CMPs.pair3_tx1,
-                    self.CMPs.pair4_tx2,
-                ],
-            ):
-                connect_diffpair_to_tester_pair(cable_pair, tester_pair)
+    # reposition silkscreen text
+    for f in pcb.footprints:
+        rot = f.at.coord[2]
+        if f.name in [
+            "lcsc:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR",
+            "lcsc:R0402",
+            "lcsc:LED0805-R-RD",
+        ]:
+            user_text = next(filter(lambda x: not x.text.startswith("FBRK:"), f.user_text))
+            user_text.at.coord = (0, -2 if rot == 180 else 2, rot)
 
 
-class Project(Component):
-    def __init__(self) -> None:
-        super().__init__()
+@click.command()
+@click.option("--nonetlist", "-p", is_flag=True, help="don't regenerate netlist")
+def main(nonetlist: bool):
+    # paths
+    build_dir = Path("./build")
+    faebryk_build_dir = build_dir.joinpath("faebryk")
+    faebryk_build_dir.mkdir(parents=True, exist_ok=True)
+    kicad_prj_path = Path(__file__).parent.parent.joinpath("kicad/main")
+    netlist_path = kicad_prj_path.joinpath("main.net")
+    pcbfile = kicad_prj_path.joinpath("main.kicad_pcb")
+    pcbnew = lambda: subprocess.check_output(["pcbnew", pcbfile], stderr=subprocess.DEVNULL)
 
-        # interfaces
-        class _IFs(Component.InterfacesCls()):
-            pass
+    # graph
+    G = Cable_Tester()
 
-        self.IFs = _IFs(self)
+    # netlist
+    netlist_updated = not nonetlist and write_netlist([G], netlist_path)
 
-        # components
-        class _CMPs(Component.ComponentsCls()):
-            tester = Tester()
-            psu = USB_C_PSU()
+    if netlist_updated:
+        logger.info("Opening kicad to import new netlist")
+        print(
+            f"Import the netlist at {netlist_path.as_posix()}. Press 'Update PCB'. Place the components, save the file and exit kicad."
+        )
+        pcbnew()
 
-        self.CMPs = _CMPs(self)
+    # pcb
+    pcb = PCB.load(pcbfile)
 
-        # power
-        self.CMPs.tester.IFs.power_in.connect(self.CMPs.psu.IFs.power_out)
+    transform_pcb(pcb)
 
-        # function
+    # import pprint
+    # pprint.pprint(pcb.node)
+    logger.info(f"Writing pcbfile {pcbfile}")
+    pcb.dump(pcbfile)
 
-        # footprints
-        #TODO
-        #self.CMPs.psu.CMPs.usb.add_trait()
-
-        def get_all(comp: Component):
-            collection = [comp]
-            sub = comp.CMPs.get_all()
-            collection.extend(sub)
-            for s in sub:
-                collection.extend(get_all(s))
-            return collection
-
-        # hack footprints
-        for r in get_all(self):
-            if not r.has_trait(has_footprint):
-                r.add_trait(has_symmetric_footprint_pinmap())
-
-        self.add_trait(has_symmetric_footprint_pinmap())
+    pcbnew()
 
 
-G = Project()
-CMPs = [G]
-
-
-t1_ = make_t1_netlist_from_graph(make_graph_from_components(CMPs))
-netlist = from_faebryk_t2_netlist(make_t2_netlist_from_t1(t1_))
-
-Path("./build/faebryk/").mkdir(parents=True, exist_ok=True)
-path = Path("./build/faebryk/faebryk.net")
-logger.info("Writing Experiment netlist to {}".format(path.resolve()))
-path.write_text(netlist, encoding="utf-8")
-
-from faebryk.exporters.netlist.netlist import render_graph
-
-plt = render_graph(t1_)
-plt.show()
+if __name__ == "__main__":
+    main()
