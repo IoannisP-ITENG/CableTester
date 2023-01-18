@@ -76,6 +76,9 @@ class PowerSwitch(Component):
             else self.IFs.power_in.IFs.hv,
         )
 
+        # connect gate to logic
+        self.IFs.logic_in.connect(self.CMPs.mosfet.IFs.gate)
+
         # passthrough non-switched side, bridge switched side
         if lowside:
             self.IFs.power_in.IFs.hv.connect(self.IFs.switched_power_out.IFs.hv)
