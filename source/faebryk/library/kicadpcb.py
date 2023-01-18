@@ -1,12 +1,10 @@
 # TODO should be part of faebryk
 
-from typing import Any, Callable, Dict, List, Tuple
-from typing_extensions import Self
-
-from sexpdata import Symbol
 from pathlib import Path
+from typing import Any, Callable, List, Tuple
 
 import sexpdata
+from sexpdata import Symbol
 
 
 class Node:
@@ -24,7 +22,7 @@ class Node:
             for search_node in self.node
             if isinstance(search_node, list) and key[0](search_node)
         ]
-        #assert len(result) > 0, f"not found in {self}"
+        # assert len(result) > 0, f"not found in {self}"
 
         if len(key) == 1:
             return result
@@ -67,7 +65,7 @@ class PCB(Node):
             if type(x) in [list, tuple]:
                 rec = map(remove_empty, x)
                 return [o for o in rec if (o is not None) and (o not in [[], tuple()])]
-            return x 
+            return x
 
         cleaned = remove_empty(self.node)
         pcbsexpout = sexpdata.dumps(cleaned)
@@ -95,10 +93,10 @@ class Footprint(Node):
                 self.get([lambda n: n[0:2] == [Symbol("fp_text"), Symbol("user")]]),
             )
         )
-    
+
     def get_pad(self, name: str):
         return self.get([lambda x: x[:2] == [Symbol("pad"), name]])[0]
-    
+
     @property
     def at(self):
         return At.from_node(self.get_prop("at")[0])
@@ -114,13 +112,20 @@ class Via(Node):
     @property
     def at(self):
         return At.from_node(self.get_prop("at")[0])
-    
+
     @property
     def size_drill(self):
         return (self.get_prop("size")[0].node[1], self.get_prop("drill")[0].node[1])
 
     @classmethod
-    def factory(cls, at: "At", size_drill: Dimensions, layers: Tuple[str, str], net: str, tstamp: str):
+    def factory(
+        cls,
+        at: "At",
+        size_drill: Dimensions,
+        layers: Tuple[str, str],
+        net: str,
+        tstamp: str,
+    ):
         return cls(
             [
                 Symbol("via"),

@@ -1,23 +1,26 @@
-#TODO should be part of faebryk
+# TODO should be part of faebryk
 
 import logging
 
 logger = logging.getLogger(__name__)
 
-from easyeda2kicad.easyeda.easyeda_api import EasyedaApi
-from easyeda2kicad.easyeda.easyeda_importer import EasyedaFootprintImporter, Easyeda3dModelImporter
-from easyeda2kicad.kicad.export_kicad_footprint import ExporterFootprintKicad
-from easyeda2kicad.kicad.export_kicad_3d_model import Exporter3dModelKicad
-from faebryk.library.core import Component
 import json
 from pathlib import Path
+
+from easyeda2kicad.easyeda.easyeda_api import EasyedaApi
+from easyeda2kicad.easyeda.easyeda_importer import (
+    Easyeda3dModelImporter,
+    EasyedaFootprintImporter,
+)
+from easyeda2kicad.kicad.export_kicad_3d_model import Exporter3dModelKicad
+from easyeda2kicad.kicad.export_kicad_footprint import ExporterFootprintKicad
+from faebryk.library.core import Component
+from faebryk.library.kicad import KicadFootprint
 from faebryk.library.trait_impl.component import has_defined_footprint
 
-from faebryk.library.kicad import KicadFootprint
 
-
-def attach_footprint(component: Component, partno: str, get_model : bool = True):
-    #TODO dont hardcode relative paths    
+def attach_footprint(component: Component, partno: str, get_model: bool = True):
+    # TODO dont hardcode relative paths
 
     # easyeda api access & caching --------------------------------------------
     api = EasyedaApi()
@@ -39,8 +42,10 @@ def attach_footprint(component: Component, partno: str, get_model : bool = True)
         logging.error(f"Failed to fetch data from EasyEDA API for part {partno}")
         return
 
-    easyeda_footprint = EasyedaFootprintImporter(easyeda_cp_cad_data=data).get_footprint()
-    
+    easyeda_footprint = EasyedaFootprintImporter(
+        easyeda_cp_cad_data=data
+    ).get_footprint()
+
     # paths -------------------------------------------------------------------
     name = easyeda_footprint.info.name
     out_base_path = Path(__file__).parent.joinpath("../../kicad/libs")
@@ -52,27 +57,32 @@ def attach_footprint(component: Component, partno: str, get_model : bool = True)
     model_base_path = out_base_path.joinpath("3dmodels/lcsc")
     model_base_path_full = Path(model_base_path.as_posix() + ".3dshapes")
     model_base_path_full.mkdir(exist_ok=True, parents=True)
-    
+
     # export to kicad ---------------------------------------------------------
     ki_footprint = ExporterFootprintKicad(easyeda_footprint)
 
-    easyeda_model_info = Easyeda3dModelImporter(easyeda_cp_cad_data=data, download_raw_3d_model=False).output
+    easyeda_model_info = Easyeda3dModelImporter(
+        easyeda_cp_cad_data=data, download_raw_3d_model=False
+    ).output
     model_path = model_base_path_full.joinpath(f"{easyeda_model_info.name}.wrl")
     if get_model and not model_path.exists():
         logger.debug(f"Downloading & Exporting 3dmodel {model_path}")
-        easyeda_model = Easyeda3dModelImporter(easyeda_cp_cad_data=data, download_raw_3d_model=True).output
+        easyeda_model = Easyeda3dModelImporter(
+            easyeda_cp_cad_data=data, download_raw_3d_model=True
+        ).output
         ki_model = Exporter3dModelKicad(easyeda_model)
         ki_model.export(model_base_path)
     else:
         ki_footprint.output.model_3d = None
 
-
     if not footprint_filepath.exists():
         logger.debug(f"Exporting footprint {footprint_filepath}")
         ki_footprint.export(
             footprint_full_path=footprint_filepath,
-            model_3d_path="${KIPRJMOD}/../libs/3dmodels/lcsc.3dshapes"
+            model_3d_path="${KIPRJMOD}/../libs/3dmodels/lcsc.3dshapes",
         )
 
     # add trat to component ---------------------------------------------------
-    component.add_trait(has_defined_footprint(KicadFootprint(f"lcsc:{easyeda_footprint.info.name}")))
+    component.add_trait(
+        has_defined_footprint(KicadFootprint(f"lcsc:{easyeda_footprint.info.name}"))
+    )

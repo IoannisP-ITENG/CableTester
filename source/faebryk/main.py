@@ -2,36 +2,29 @@
 TODO: Explain file
 """
 
-import click
 import logging
-from pathlib import Path
-import sys
-from typing import Dict, List, Optional, Set, Tuple
 import subprocess
-from collections import defaultdict
+from pathlib import Path
+from typing import List, Optional, Tuple
 
+import click
+import library.lcsc
 
 # local imports
 from cable_tester import Cable_Tester, PairTester
-from library.kicadpcb import PCB, Footprint, Text, At
-import library.lcsc
-
-
-# function imports
-from faebryk.exporters.netlist.kicad.netlist_kicad import from_faebryk_t2_netlist
-from faebryk.exporters.netlist.netlist import make_t2_netlist_from_t1
 from faebryk.exporters.netlist.graph import (
     make_graph_from_components,
     make_t1_netlist_from_graph,
 )
 
-from faebryk.library.util import get_all_components
+# function imports
+from faebryk.exporters.netlist.kicad.netlist_kicad import from_faebryk_t2_netlist
+from faebryk.exporters.netlist.netlist import make_t2_netlist_from_t1
 from faebryk.library.core import Component
-from faebryk.library.traits.component import has_overriden_name, has_footprint
-from faebryk.library.kicad import has_kicad_footprint
-
-from library.pcbutil import PCB_Transformer
+from faebryk.library.util import get_all_components
+from library.kicadpcb import PCB
 from library.library.components import MOSFET
+from library.pcbutil import PCB_Transformer
 
 # logging settings
 logger = logging.getLogger(__name__)
@@ -109,7 +102,12 @@ def transform_pcb(transformer: PCB_Transformer):
             mos = ind.power_switch.CMPs.mosfet
             pr = ind.power_switch.CMPs.pull_resistor
 
-            layout : List[Tuple[Component, int]] = [(mos, 0), (pr, 90), (clr, 270), (led, 0)]
+            layout: List[Tuple[Component, int]] = [
+                (mos, 0),
+                (pr, 90),
+                (clr, 270),
+                (led, 0),
+            ]
             if alt:
                 layout = [(mos, 0), (pr, 90), (led, 180), (clr, 270)]
             if flip:
@@ -117,23 +115,23 @@ def transform_pcb(transformer: PCB_Transformer):
 
             # left, up, right, down
             clearances = {
-                "lcsc:LED0805-R-RD": (2.25,1,2,1),
-                "lcsc:R0402": (1,0.5,1,0.5),
-                "lcsc:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR": (2,3.25,2,3.25),
+                "lcsc:LED0805-R-RD": (2.25, 1, 2, 1),
+                "lcsc:R0402": (1, 0.5, 1, 0.5),
+                "lcsc:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR": (2, 3.25, 2, 3.25),
             }
 
             group_x_ptr = 0
             for j2, (cmp, rot) in enumerate(layout):
                 fp = PCB_Transformer.get_fp(cmp)
-                clearance = clearances.get(fp.name, tuple([3]*4))
+                clearance = clearances.get(fp.name, tuple([3] * 4))
                 # rotate
-                clearance = tuple(clearance[rot // 90:] + clearance[:rot // 90])
+                clearance = tuple(clearance[rot // 90 :] + clearance[: rot // 90])
 
                 group_x_ptr += clearance[0]
 
                 target = (
-                    base[0] + j * 11 + group_x_ptr, # x row length
-                    base[1] + i * 3.25, # y mosfet clearance
+                    base[0] + j * 11 + group_x_ptr,  # x row length
+                    base[1] + i * 3.25,  # y mosfet clearance
                     rot,
                 )
                 transformer.move_fp(fp, target)

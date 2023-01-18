@@ -2,13 +2,16 @@ import itertools
 import logging
 import random
 from typing import Any, List, Tuple, TypeVar
-from faebryk.library.util import get_all_components
-from faebryk.library.core import Component
-from faebryk.library.traits.component import has_overriden_name, has_footprint, has_footprint_pinmap
-from faebryk.library.kicad import has_kicad_footprint
-from faebryk.library.core import ComponentTrait, Interface
 
-from library.kicadpcb import At, Footprint, PCB, Line, Text, Via
+from faebryk.library.core import Component, ComponentTrait, Interface
+from faebryk.library.kicad import has_kicad_footprint
+from faebryk.library.traits.component import (
+    has_footprint,
+    has_footprint_pinmap,
+    has_overriden_name,
+)
+from faebryk.library.util import get_all_components
+from library.kicadpcb import PCB, At, Footprint, Line, Text, Via
 
 logger = logging.getLogger(__name__)
 
@@ -131,13 +134,13 @@ class PCB_Transformer:
         raise NotImplementedError()
 
     def insert_via(self, coord: Tuple[float, float], intf: Interface):
-        cmp : Component = intf.parent[0]
+        cmp: Component = intf.parent[0]
         pin_map = cmp.get_trait(has_footprint_pinmap).get_pin_map()
-        pin_name = [k for k,v in pin_map.items() if v == intf][0]
+        pin_name = [k for k, v in pin_map.items() if v == intf][0]
         fp = self.get_fp(cmp)
         pad = fp.get_pad(pin_name)
         net = pad.get_prop("net")[0].node[1]
-        #print("Inserting via for", ".".join([y for x,y in intf.get_hierarchy()]), "at:", coord, "in net:", net)
+        # print("Inserting via for", ".".join([y for x,y in intf.get_hierarchy()]), "at:", coord, "in net:", net)
 
         self.pcb.append(
             Via.factory(
@@ -145,6 +148,6 @@ class PCB_Transformer:
                 size_drill=self.via_size_drill,
                 layers=("F.Cu", "B.Cu"),
                 net=net,
-                tstamp=str(next(self.tstamp_i))
+                tstamp=str(next(self.tstamp_i)),
             )
         )

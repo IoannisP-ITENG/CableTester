@@ -3,35 +3,32 @@ from typing import List
 
 logger = logging.getLogger(__name__)
 
+# local imports
+import library.lcsc as lcsc
+
 # library imports
 from faebryk.library.core import Component
+from faebryk.library.library.components import Resistor
 from faebryk.library.library.interfaces import Electrical, Power
-from faebryk.library.library.components import Resistor, LED
 from faebryk.library.library.parameters import Constant
 from faebryk.library.trait_impl.component import (
-    has_symmetric_footprint_pinmap,
     has_defined_footprint_pinmap,
     has_defined_type_description,
-    has_overriden_name_defined,
+    has_symmetric_footprint_pinmap,
 )
 from faebryk.library.traits.component import has_footprint, has_footprint_pinmap
-from faebryk.library.kicad import has_defined_kicad_ref
 
 # function imports
-from faebryk.library.util import times, get_all_components
+from faebryk.library.util import get_all_components, times
 
 # Project library imports
 from library.library.components import (
-    MOSFET,
     DifferentialPair,
-    PowerSwitch,
     PoweredLED,
+    PowerSwitch,
     RJ45_Receptacle,
     USB_C_Receptacle,
 )
-
-# local imports
-import library.lcsc as lcsc
 
 K = 1000
 M = 1000_000
