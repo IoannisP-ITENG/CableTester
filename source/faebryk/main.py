@@ -21,6 +21,7 @@ from faebryk.exporters.netlist.graph import (
 from faebryk.exporters.netlist.kicad.netlist_kicad import from_faebryk_t2_netlist
 from faebryk.exporters.netlist.netlist import make_t2_netlist_from_t1
 from faebryk.library.core import Component
+from faebryk.library.traits.component import has_footprint_pinmap
 from faebryk.library.util import get_all_components
 from library.kicadpcb import PCB
 from library.library.components import MOSFET
@@ -139,7 +140,37 @@ def transform_pcb(transformer: PCB_Transformer):
 
                 # mosfet vias
                 if isinstance(cmp, MOSFET):
-                    transformer.insert_via((target[0], target[1]), intf=cmp.IFs.gate)
+                    # source via to power plane
+                    if ind.power_switch.lowside:
+                        transformer.insert_via_next_to(
+                            intf=cmp.IFs.drain, clearance=(-1.5, 0)
+                        )
+                    # gate via to signal plane
+                    transformer.insert_via_next_to(
+                        intf=cmp.IFs.gate, clearance=(1.5, 0.5)
+                    )
+
+    # USB VIA
+    usb_pm = t.usb_c[1].get_trait(has_footprint_pinmap).get_pin_map()
+    for side in ["A", "B"]:
+        intfs = [usb_pm[f"{side}{i}"] for i in range(1, 13)]
+        if side == "B":
+            transformer.insert_via_triangle(
+                intfs,
+                depth=5 if side == "A" else -5.5,
+                clearance=0.75 if side == "A" else -0.75,
+            )
+        if side == "A":
+            transformer.insert_via_line2(intfs[:6], (6, 0), (0, -0.75))
+            transformer.insert_via_line2(list(reversed(intfs[6:])), (6, 0), (0, -0.75))
+
+    # rj45_pm = t.rj45[1].get_trait(has_footprint_pinmap).get_pin_map()
+    # for pin_name, intf in rj45_pm.items():
+    #    if int(pin_name) % 2 == 0:
+    #        transformer.insert_via_next_to(intf, (0, -2))
+    #    else:
+    #        transformer.insert_via_next_to(intf, (0, 2))
+
     # --------------------------------------------------------------------------
 
     # rename, resize, relayer text

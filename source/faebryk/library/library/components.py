@@ -52,6 +52,9 @@ class PowerSwitch(Component):
     def __init__(self, lowside: bool, normally_closed: bool) -> None:
         super().__init__()  # interfaces
 
+        self.lowside = lowside
+        self.normally_closed = normally_closed
+
         class _IFs(Component.InterfacesCls()):
             # TODO replace with logical
             logic_in = Electrical()

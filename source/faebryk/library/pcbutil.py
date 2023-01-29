@@ -1,9 +1,12 @@
 import itertools
 import logging
+import math
 import random
-from typing import Any, List, Tuple, TypeVar
+from operator import add
+from typing import Any, Dict, List, Tuple, TypeVar
 
-from faebryk.library.core import Component, ComponentTrait, Interface
+import numpy as np
+from faebryk.library.core import Component, ComponentTrait, FaebrykLibObject, Interface
 from faebryk.library.kicad import has_kicad_footprint
 from faebryk.library.traits.component import (
     has_footprint,
@@ -11,7 +14,7 @@ from faebryk.library.traits.component import (
     has_overriden_name,
 )
 from faebryk.library.util import get_all_components
-from library.kicadpcb import PCB, At, Footprint, Line, Text, Via
+from library.kicadpcb import PCB, At, Footprint, Line, Pad, Text, Via
 
 logger = logging.getLogger(__name__)
 
@@ -38,7 +41,7 @@ class PCB_Transformer:
         FONT_SCALE = 8
         FONT = (1 / FONT_SCALE, 1 / FONT_SCALE, 0.15 / FONT_SCALE)
         self.font = FONT
-        self.via_size_drill = (0.55, 0.25)
+        self.via_size_drill = (0.45, 0.2)
 
         self.tstamp_i = itertools.count()
 
@@ -133,15 +136,7 @@ class PCB_Transformer:
     def insert_plane(self, layer: str, net: Any):
         raise NotImplementedError()
 
-    def insert_via(self, coord: Tuple[float, float], intf: Interface):
-        cmp: Component = intf.parent[0]
-        pin_map = cmp.get_trait(has_footprint_pinmap).get_pin_map()
-        pin_name = [k for k, v in pin_map.items() if v == intf][0]
-        fp = self.get_fp(cmp)
-        pad = fp.get_pad(pin_name)
-        net = pad.get_prop("net")[0].node[1]
-        # print("Inserting via for", ".".join([y for x,y in intf.get_hierarchy()]), "at:", coord, "in net:", net)
-
+    def insert_via(self, coord: Tuple[float, float], net: str):
         self.pcb.append(
             Via.factory(
                 at=At.factory(coord),
@@ -151,3 +146,206 @@ class PCB_Transformer:
                 tstamp=str(next(self.tstamp_i)),
             )
         )
+
+    @staticmethod
+    def get_any_fp_map(intf: Interface) -> Tuple[Dict[str, Interface], Component]:
+        obj: FaebrykLibObject = intf
+
+        while not obj.has_trait(has_footprint_pinmap):
+            if obj.parent is None:
+                raise Exception
+            obj = obj.parent[0]
+
+        assert isinstance(obj, Component)
+        pin_map = obj.get_trait(has_footprint_pinmap).get_pin_map()
+        return pin_map, obj
+
+    @staticmethod
+    def get_pad(intf: Interface) -> Tuple[Footprint, Pad]:
+        pin_map, cmp = PCB_Transformer.get_any_fp_map(intf)
+        pin_name = [k for k, v in pin_map.items() if v == intf][0]
+
+        fp = PCB_Transformer.get_fp(cmp)
+        pad = fp.get_pad(pin_name)
+
+        return fp, pad
+
+    def insert_via_next_to(self, intf: Interface, clearance: Tuple[float, float]):
+        fp, pad = self.get_pad(intf)
+
+        rel_target = tuple(map(add, pad.at.coord, clearance))
+        coord = self.Geometry.abs_pos(fp.at.coord, rel_target)
+
+        self.insert_via(coord[:2], pad.net)
+
+        # print("Inserting via for", ".".join([y for x,y in intf.get_hierarchy()]), "at:", coord, "in net:", net)
+        ...
+
+    def insert_via_triangle(
+        self, intfs: List[Interface], depth: float, clearance: float
+    ):
+        # get pcb pads
+        fp_pads = list(map(self.get_pad, intfs))
+        pads = [x[1] for x in fp_pads]
+        fp = fp_pads[0][0]
+
+        # from first & last pad
+        rect = [pads[-1].at.coord[i] - pads[0].at.coord[i] for i in range(2)]
+        assert 0 in rect
+        width = [p for p in rect if p != 0][0]
+        start = pads[0].at.coord
+
+        # construct triangle
+        shape = self.Geometry.triangle(
+            self.Geometry.abs_pos(fp.at.coord, start),
+            width=width,
+            depth=depth,
+            count=len(pads),
+        )
+
+        # clearance
+        shape = self.Geometry.translate(
+            tuple([clearance if x != 0 else 0 for x in rect]), shape
+        )
+
+        # place vias
+        for pad, point in zip(pads, shape):
+            self.insert_via(point, pad.net)
+
+    def insert_via_line(
+        self, intfs: List[Interface], length: float, clearance: float, angle_deg: float
+    ):
+        raise NotImplementedError()
+        # get pcb pads
+        fp_pads = list(map(self.get_pad, intfs))
+        pads = [x[1] for x in fp_pads]
+        fp = fp_pads[0][0]
+
+        # from first & last pad
+        start = pads[0].at.coord
+        abs_start = self.Geometry.abs_pos(fp.at.coord, start)
+
+        shape = self.Geometry.line(
+            start=abs_start,
+            length=length,
+            count=len(pads),
+        )
+
+        shape = self.Geometry.rotate(
+            axis=abs_start[:2],
+            structure=shape,
+            angle_deg=angle_deg,
+        )
+
+        # clearance
+        shape = self.Geometry.translate((clearance, 0), shape)
+
+        # place vias
+        for pad, point in zip(pads, shape):
+            self.insert_via(point, pad.net)
+
+    def insert_via_line2(
+        self,
+        intfs: List[Interface],
+        length: Tuple[float, float],
+        clearance: Tuple[float, float],
+    ):
+        # get pcb pads
+        fp_pads = list(map(self.get_pad, intfs))
+        pads = [x[1] for x in fp_pads]
+        fp = fp_pads[0][0]
+
+        # from first & last pad
+        start = tuple(map(add, pads[0].at.coord, clearance))
+        abs_start = self.Geometry.abs_pos(fp.at.coord, start)
+
+        shape = self.Geometry.line2(
+            start=abs_start,
+            end=self.Geometry.abs_pos(abs_start, length),
+            count=len(pads),
+        )
+
+        # place vias
+        for pad, point in zip(pads, shape):
+            self.insert_via(point, pad.net)
+
+    # Geometry ----------------------------------------------------------------
+    class Geometry:
+        Point = Tuple[float, float]
+
+        @staticmethod
+        def abs_pos(parent: At.Coord, child: At.Coord) -> At.Coord:
+            x, y = parent[:2]
+            rot = 0
+            if len(parent) > 2:
+                rot = parent[2] / 360 * 2 * math.pi
+
+            cx, cy = child[:2]
+
+            rx = round(cx * math.cos(rot) + cy * math.sin(rot), 2)
+            ry = round(-cx * math.sin(rot) + cy * math.cos(rot), 2)
+
+            # print(f"Rotate {round(cx,2),round(cy,2)}, by {round(rot,2),parent[2]} to {rx,ry}")
+
+            return x + rx, y + ry, 0
+
+        @staticmethod
+        def translate(vec: Point, structure: List[Point]):
+            return [tuple(map(add, vec, point)) for point in structure]
+
+        @classmethod
+        def rotate(
+            cls, axis: Point, structure: List[Point], angle_deg: float
+        ) -> List[Point]:
+            theta = np.radians(angle_deg)
+            c, s = np.cos(theta), np.sin(theta)
+            R = np.array(((c, -s), (s, c)))
+
+            return cls.translate(
+                (-axis[0], -axis[1]),
+                [
+                    tuple(R @ np.array(point))
+                    for point in cls.translate(axis, structure)
+                ],
+            )
+
+        @staticmethod
+        def triangle(start: At.Coord, width: float, depth: float, count: int):
+            x1, y1 = start[:2]
+
+            n = count - 1
+            cy = width / n
+
+            ys = [round(y1 + cy * i, 2) for i in range(count)]
+            xs = [
+                round(x1 + depth * (1 - abs(1 - 1 / n * i * 2)), 2)
+                for i in range(count)
+            ]
+
+            return list(zip(xs, ys))
+
+        @staticmethod
+        def line(start: At.Coord, length: float, count: int):
+            x1, y1 = start[:2]
+
+            n = count - 1
+            cy = length / n
+
+            ys = [round(y1 + cy * i, 2) for i in range(count)]
+            xs = [x1] * count
+
+            return list(zip(xs, ys))
+
+        @staticmethod
+        def line2(start: At.Coord, end: At.Coord, count: int):
+            x1, y1 = start[:2]
+            x2, y2 = end[:2]
+
+            n = count - 1
+            cx = (x2 - x1) / n
+            cy = (y2 - y1) / n
+
+            ys = [round(y1 + cy * i, 2) for i in range(count)]
+            xs = [round(x1 + cx * i, 2) for i in range(count)]
+
+            return list(zip(xs, ys))

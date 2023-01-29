@@ -94,8 +94,8 @@ class Footprint(Node):
             )
         )
 
-    def get_pad(self, name: str):
-        return self.get([lambda x: x[:2] == [Symbol("pad"), name]])[0]
+    def get_pad(self, name: str) -> "Pad":
+        return Pad.from_node(self.get([lambda x: x[:2] == [Symbol("pad"), name]])[0])
 
     @property
     def at(self):
@@ -104,6 +104,24 @@ class Footprint(Node):
     @property
     def name(self) -> str:
         return self.node[1]
+
+
+class Pad(Node):
+    @property
+    def at(self):
+        return At.from_node(self.get_prop("at")[0])
+
+    @property
+    def name(self) -> str:
+        return self.node[1]
+
+    @property
+    def net(self) -> str:
+        return self.get_prop("net")[0].node[1]
+
+    @property
+    def size(self) -> Tuple[float, float]:
+        return tuple(self.get_prop("size")[0].node[1:3])
 
 
 class Via(Node):
@@ -238,7 +256,7 @@ class Text(Node):
 
 
 class At(Node):
-    Coord = Tuple[float, float, float]
+    Coord = Tuple[float, float, float] | Tuple[float, float]
 
     @property
     def coord(self) -> Coord:
