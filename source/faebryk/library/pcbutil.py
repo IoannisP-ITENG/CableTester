@@ -32,7 +32,7 @@ class PCB_Transformer:
         def get_fp(self):
             return self.fp
 
-    def __init__(self, pcb: PCB, graph: Component) -> None:
+    def __init__(self, pcb: PCB, graph: Component, cleanup: bool = True) -> None:
         self.pcb = pcb
         self.graph = graph
 
@@ -41,7 +41,9 @@ class PCB_Transformer:
         FONT_SCALE = 8
         FONT = (1 / FONT_SCALE, 1 / FONT_SCALE, 0.15 / FONT_SCALE)
         self.font = FONT
-        self.via_size_drill = (0.45, 0.2)
+
+        # After finalized, vias get changed to 0.45
+        self.via_size_drill = (0.46, 0.2)
 
         self.tstamp_i = itertools.count()
 

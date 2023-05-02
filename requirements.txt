@@ -1,4 +1,4 @@
-faebryk == 2.0.0
+faebryk @ git+https://github.com/faebryk/faebryk@feature/accessable_graph_names
 setuptools >= 64.0.0
 pre-commit >= 2.20.0
 isort >= 5.6.4
