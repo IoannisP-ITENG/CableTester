@@ -54,7 +54,7 @@
   (pad "B11" smd rect (at -2.25 -1.56) (size 0.3 0.7) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp 41aa1e49-8561-4d06-9bcf-ca690e919915))
   (pad "B12" smd rect (at -3.1 -1.56) (size 1 0.7) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp 991eb639-c0c2-46d6-a3fe-3dcde360d4d3))
   (model "${KIPRJMOD}/../libs/3dmodels/lcsc.3dshapes/USB-C-SMD_TYPE-C-USB-18.wrl"
-    (offset (xyz 0 -0.93 1))
+    (offset (xyz 0 -0.93 0))
     (scale (xyz 1 1 1))
     (rotate (xyz 0 0 180))
   )

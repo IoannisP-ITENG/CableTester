@@ -3,35 +3,32 @@ from typing import List
 
 logger = logging.getLogger(__name__)
 
+# local imports
+import library.lcsc as lcsc
+
 # library imports
 from faebryk.library.core import Component
+from faebryk.library.library.components import Resistor
 from faebryk.library.library.interfaces import Electrical, Power
-from faebryk.library.library.components import Resistor, LED
 from faebryk.library.library.parameters import Constant
 from faebryk.library.trait_impl.component import (
-    has_symmetric_footprint_pinmap,
     has_defined_footprint_pinmap,
     has_defined_type_description,
-    has_overriden_name_defined,
+    has_symmetric_footprint_pinmap,
 )
 from faebryk.library.traits.component import has_footprint, has_footprint_pinmap
-from faebryk.library.kicad import has_defined_kicad_ref
 
 # function imports
-from faebryk.library.util import times, get_all_components
+from faebryk.library.util import get_all_components, times
 
 # Project library imports
 from library.library.components import (
-    MOSFET,
     DifferentialPair,
-    PowerSwitch,
     PoweredLED,
+    PowerSwitch,
     RJ45_Receptacle,
     USB_C_Receptacle,
 )
-
-# local imports
-import library.lcsc as lcsc
 
 K = 1000
 M = 1000_000
@@ -240,6 +237,9 @@ class Cable_Tester(Component):
                 lcsc.attach_footprint(component=cmp, partno="C138392")
             elif isinstance(cmp, PairTester):
                 pairtester = cmp
+                pairtester.CMPs.indicator.CMPs.power_switch.CMPs.pull_resistor.set_resistance(
+                    Constant(100 * K)
+                )
                 lcsc.attach_footprint(
                     component=pairtester.CMPs.indicator.CMPs.power_switch.CMPs.pull_resistor,
                     partno="C25741",
@@ -257,6 +257,9 @@ class Cable_Tester(Component):
                 )
                 # R_led = pairtester.CMPs.indicator.CMPs.led.CMPs.led.get_trait(LED.has_calculatable_needed_series_resistance).get_needed_series_resistance_ohm(5)
                 # 300R
+                pairtester.CMPs.indicator.CMPs.led.CMPs.current_limiting_resistor.set_resistance(
+                    Constant(300)
+                )
                 lcsc.attach_footprint(
                     component=pairtester.CMPs.indicator.CMPs.led.CMPs.current_limiting_resistor,
                     partno="C137885",
@@ -265,14 +268,8 @@ class Cable_Tester(Component):
                 pairtester.CMPs.indicator.CMPs.led.CMPs.current_limiting_resistor.add_trait(
                     has_symmetric_footprint_pinmap()
                 )
-                pairtester.CMPs.indicator.CMPs.led.CMPs.current_limiting_resistor.add_trait(
-                    has_defined_type_description("R")
-                )
                 pairtester.CMPs.indicator.CMPs.power_switch.CMPs.pull_resistor.add_trait(
                     has_symmetric_footprint_pinmap()
-                )
-                pairtester.CMPs.indicator.CMPs.power_switch.CMPs.pull_resistor.add_trait(
-                    has_defined_type_description("R")
                 )
                 pairtester.CMPs.indicator.CMPs.led.CMPs.led.add_trait(
                     has_defined_footprint_pinmap(
