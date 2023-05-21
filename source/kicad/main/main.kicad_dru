@@ -49,10 +49,6 @@
 	(constraint hole (min 0.2mm) (max 6.35mm))
 	(condition "A.isPlated()"))
 
-(rule "PTH Size"
-	(constraint length (min 0.7mm) (max 6.35mm))
-	(condition "A.isPlated()"))
-
 (rule "Minimum Non-plated Hole Size"
 	(constraint hole (min 0.5mm))
 	(condition "A.Type == 'pad' && !A.isPlated()"))
