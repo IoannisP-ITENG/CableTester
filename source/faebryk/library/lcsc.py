@@ -16,7 +16,11 @@ from easyeda2kicad.kicad.export_kicad_3d_model import Exporter3dModelKicad
 from easyeda2kicad.kicad.export_kicad_footprint import ExporterFootprintKicad
 from faebryk.library.core import Component
 from faebryk.library.kicad import KicadFootprint
-from faebryk.library.trait_impl.component import has_defined_footprint
+from faebryk.library.trait_impl.component import (
+    has_defined_descriptive_properties,
+    has_defined_footprint,
+)
+from faebryk.library.traits.component import has_descriptive_properties
 
 
 def attach_footprint(component: Component, partno: str, get_model: bool = True):
@@ -64,21 +68,24 @@ def attach_footprint(component: Component, partno: str, get_model: bool = True):
     easyeda_model_info = Easyeda3dModelImporter(
         easyeda_cp_cad_data=data, download_raw_3d_model=False
     ).output
+    assert easyeda_model_info is not None
+
     model_path = model_base_path_full.joinpath(f"{easyeda_model_info.name}.wrl")
     if get_model and not model_path.exists():
         logger.debug(f"Downloading & Exporting 3dmodel {model_path}")
         easyeda_model = Easyeda3dModelImporter(
             easyeda_cp_cad_data=data, download_raw_3d_model=True
         ).output
+        assert easyeda_model is not None
         ki_model = Exporter3dModelKicad(easyeda_model)
-        ki_model.export(model_base_path)
+        ki_model.export(str(model_base_path))
     else:
         ki_footprint.output.model_3d = None
 
     if not footprint_filepath.exists():
         logger.debug(f"Exporting footprint {footprint_filepath}")
         ki_footprint.export(
-            footprint_full_path=footprint_filepath,
+            footprint_full_path=str(footprint_filepath),
             model_3d_path="${KIPRJMOD}/../libs/3dmodels/lcsc.3dshapes",
         )
 
@@ -86,3 +93,6 @@ def attach_footprint(component: Component, partno: str, get_model: bool = True):
     component.add_trait(
         has_defined_footprint(KicadFootprint(f"lcsc:{easyeda_footprint.info.name}"))
     )
+    if not component.has_trait(has_descriptive_properties):
+        component.add_trait(has_defined_descriptive_properties({}))
+    component.get_trait(has_descriptive_properties).add_properties({"LCSC": partno})
