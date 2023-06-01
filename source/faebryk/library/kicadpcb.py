@@ -53,6 +53,10 @@ class PCB(Node):
         return [Via.from_node(n) for n in self.get_prop("via")]
 
     @property
+    def text(self) -> List["GR_Text"]:
+        return [GR_Text.from_node(n) for n in self.get_prop("gr_text")]
+
+    @property
     def segments(self) -> List["Node"]:
         return [Node.from_node(n) for n in self.get_prop("segment")]
 
@@ -74,22 +78,22 @@ class PCB(Node):
 
 class Footprint(Node):
     @property
-    def reference(self) -> "Text":
-        return Text.from_node(
+    def reference(self) -> "FP_Text":
+        return FP_Text.from_node(
             self.get([lambda n: n[0:2] == [Symbol("fp_text"), Symbol("reference")]])[0]
         )
 
     @property
-    def value(self) -> "Text":
-        return Text.from_node(
+    def value(self) -> "FP_Text":
+        return FP_Text.from_node(
             self.get([lambda n: n[0:2] == [Symbol("fp_text"), Symbol("value")]])[0]
         )
 
     @property
-    def user_text(self) -> List["Text"]:
+    def user_text(self) -> List["FP_Text"]:
         return list(
             map(
-                Text.from_node,
+                FP_Text.from_node,
                 self.get([lambda n: n[0:2] == [Symbol("fp_text"), Symbol("user")]]),
             )
         )
@@ -191,10 +195,7 @@ class Line(Node):
 
 class Text(Node):
     Font = Tuple[float, float, float]
-
-    @property
-    def text_type(self) -> str:
-        return self.node[1].value()
+    TEXT_IDX = None
 
     @property
     def layer(self) -> Node:
@@ -206,11 +207,13 @@ class Text(Node):
 
     @property
     def text(self) -> str:
-        return self.node[2]
+        assert self.TEXT_IDX is not None
+        return self.node[self.TEXT_IDX]
 
     @text.setter
     def text(self, value: str):
-        self.node[2] = value
+        assert self.TEXT_IDX is not None
+        self.node[self.TEXT_IDX] = value
 
     @property
     def at(self):
@@ -233,12 +236,13 @@ class Text(Node):
         return f"Text[{self.node}]"
 
     @classmethod
-    def factory(cls, text: str, at: "At", layer: str, font: Font, tstamp: str):
+    def factory(
+        cls, text: str, at: "At", layer: str, font: Font, tstamp: str, text_type: str
+    ):
         # TODO make more generic
         return Text(
             [
-                Symbol("fp_text"),
-                Symbol("user"),
+                Symbol(text_type),
                 text,
                 at.node,
                 [Symbol("layer"), layer],
@@ -253,6 +257,27 @@ class Text(Node):
                 [Symbol("tstamp"), tstamp],
             ]
         )
+
+
+class FP_Text(Text):
+    TEXT_IDX = 2
+
+    @property
+    def text_type(self) -> str:
+        return self.node[1].value()
+
+    @classmethod
+    def factory(cls, text: str, at: "At", layer: str, font: Text.Font, tstamp: str):
+        generic = Text.factory(text, at, layer, font, tstamp, text_type="fp_text")
+        generic.node.insert(1, Symbol("user"))
+
+
+class GR_Text(Text):
+    TEXT_IDX = 1
+
+    @classmethod
+    def factory(cls, text: str, at: "At", layer: str, font: Text.Font, tstamp: str):
+        return Text.factory(text, at, layer, font, tstamp, text_type="gr_text")
 
 
 class At(Node):

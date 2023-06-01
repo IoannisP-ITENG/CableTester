@@ -14,7 +14,7 @@ from faebryk.library.traits.component import (
     has_overriden_name,
 )
 from faebryk.library.util import get_all_components
-from library.kicadpcb import PCB, At, Footprint, Line, Pad, Text, Via
+from library.kicadpcb import PCB, At, Footprint, FP_Text, GR_Text, Line, Pad, Via
 
 logger = logging.getLogger(__name__)
 
@@ -108,7 +108,7 @@ class PCB_Transformer:
         if any(filter(lambda x: x.text == "FBRK:autoplaced", fp.user_text)):
             return
         fp.append(
-            Text.factory(
+            FP_Text.factory(
                 text="FBRK:autoplaced",
                 at=At.factory((0, 0, 0)),
                 font=self.font,
@@ -123,6 +123,10 @@ class PCB_Transformer:
         for via in self.pcb.vias:
             if via.size_drill == self.via_size_drill:
                 via.delete()
+
+        for text in self.pcb.text:
+            if text.text.endswith("_FBRK_AUTO"):
+                text.delete()
 
     @staticmethod
     def get_fp(cmp) -> Footprint:
@@ -145,6 +149,20 @@ class PCB_Transformer:
                 size_drill=self.via_size_drill,
                 layers=("F.Cu", "B.Cu"),
                 net=net,
+                tstamp=str(next(self.tstamp_i)),
+            )
+        )
+
+    def insert_text(self, text: str, at: "At", font: FP_Text.Font, permanent: bool):
+        # TODO find a better way for this
+        if not permanent:
+            text = text + "_FBRK_AUTO"
+        self.pcb.append(
+            GR_Text.factory(
+                text=text,
+                at=at,
+                layer="F.SilkS",
+                font=font,
                 tstamp=str(next(self.tstamp_i)),
             )
         )

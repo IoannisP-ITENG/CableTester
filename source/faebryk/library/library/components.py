@@ -33,6 +33,10 @@ class MOSFET(Component):
         self, channel_type: ChannelType, saturation_type: SaturationType
     ) -> None:
         super().__init__()
+
+        self.channel_type = channel_type
+        self.saturation_type = saturation_type
+
         self._setup_interfaces()
 
     def _setup_traits(self):
@@ -45,7 +49,8 @@ class MOSFET(Component):
             drain = Electrical()
 
         self.IFs = _IFs(self)
-        self.add_trait(can_bridge_defined(self.IFs.source, self.IFs.drain))
+        # TODO pretty confusing
+        self.add_trait(can_bridge_defined(in_if=self.IFs.source, out_if=self.IFs.drain))
 
 
 class PowerSwitch(Component):
@@ -71,7 +76,7 @@ class PowerSwitch(Component):
                 else MOSFET.ChannelType.P_CHANNEL,
                 MOSFET.SaturationType.ENHANCEMENT,
             )
-            pull_resistor = Resistor(TBD)
+            pull_resistor = Resistor(TBD())
 
         self.CMPs = _CMPs(self)
 
@@ -98,6 +103,7 @@ class PowerSwitch(Component):
                 self.CMPs.mosfet, self.IFs.switched_power_out.IFs.hv
             )
 
+        # TODO pretty confusing
         # Add bridge trait
         self.add_trait(
             can_bridge_defined(self.IFs.power_in, self.IFs.switched_power_out)
@@ -114,7 +120,7 @@ class PoweredLED(Component):
         self.IFs = _IFs(self)
 
         class _CMPs(Component.ComponentsCls()):
-            current_limiting_resistor = Resistor(TBD)
+            current_limiting_resistor = Resistor(TBD())
             led = LED()
 
         self.CMPs = _CMPs(self)

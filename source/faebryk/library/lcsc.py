@@ -79,7 +79,8 @@ def attach_footprint(component: Component, partno: str, get_model: bool = True):
         assert easyeda_model is not None
         ki_model = Exporter3dModelKicad(easyeda_model)
         ki_model.export(str(model_base_path))
-    else:
+
+    if not model_path.exists():
         ki_footprint.output.model_3d = None
 
     if not footprint_filepath.exists():

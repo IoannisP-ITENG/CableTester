@@ -7,8 +7,8 @@ import subprocess
 from pathlib import Path
 from typing import List, Optional, Tuple
 
-import click
 import library.lcsc
+import typer
 
 # local imports
 from cable_tester import Cable_Tester, PairTester
@@ -22,7 +22,7 @@ from faebryk.exporters.netlist.kicad.netlist_kicad import from_faebryk_t2_netlis
 from faebryk.exporters.netlist.netlist import make_t2_netlist_from_t1
 from faebryk.library.core import Component
 from faebryk.library.util import get_all_components
-from library.kicadpcb import PCB
+from library.kicadpcb import PCB, At
 from library.library.components import MOSFET
 from library.pcbutil import PCB_Transformer
 
@@ -60,6 +60,14 @@ def write_netlist(components: List[Component], path: Path) -> bool:
 def transform_pcb(transformer: PCB_Transformer):
     FONT_SCALE = 8
     FONT = (1 / FONT_SCALE, 1 / FONT_SCALE, 0.15 / FONT_SCALE)
+    PLACE_VIAS = False
+
+    LED_FP = "lcsc:LED0805-R-RD"
+    MOSFET_FPS = [
+        "lcsc:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR",
+        "lcsc:SOT-23_L2.9-W1.3-P1.90-LS2.4-BR",
+    ]
+    RESISTOR_FP = "lcsc:R0402"
 
     footprints = [
         cmp.get_trait(PCB_Transformer.has_linked_kicad_footprint).get_fp()
@@ -103,21 +111,22 @@ def transform_pcb(transformer: PCB_Transformer):
             pr = ind.power_switch.CMPs.pull_resistor
 
             layout: List[Tuple[Component, int]] = [
-                (mos, 0),
-                (pr, 90),
+                (pr, 270),
+                (mos, 180),
                 (clr, 270),
                 (led, 0),
             ]
             if alt:
-                layout = [(mos, 0), (pr, 90), (led, 180), (clr, 270)]
+                layout = [(pr, 270), (mos, 180), (led, 180), (clr, 270)]
             if flip:
                 layout = PCB_Transformer.flipped(layout)
 
             # left, up, right, down
             clearances = {
-                "lcsc:LED0805-R-RD": (2.25, 1, 2, 1),
-                "lcsc:R0402": (1, 0.5, 1, 0.5),
-                "lcsc:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR": (2, 3.25, 2, 3.25),
+                LED_FP: (2.25, 1, 2, 1),
+                RESISTOR_FP: (1, 0.5, 1, 0.5),
+                MOSFET_FPS[0]: (2, 3.25, 2, 3.25),
+                MOSFET_FPS[1]: (2, 3.25, 2, 3.25),
             }
 
             group_x_ptr = 0
@@ -138,16 +147,17 @@ def transform_pcb(transformer: PCB_Transformer):
                 group_x_ptr += clearance[2]
 
                 # mosfet vias
-                if isinstance(cmp, MOSFET):
-                    # source via to power plane
-                    if ind.power_switch.lowside:
+                if PLACE_VIAS:
+                    if isinstance(cmp, MOSFET):
+                        # source via to power plane
+                        if ind.power_switch.lowside:
+                            transformer.insert_via_next_to(
+                                intf=cmp.IFs.drain, clearance=(-1.5, 0)
+                            )
+                        # gate via to signal plane
                         transformer.insert_via_next_to(
-                            intf=cmp.IFs.drain, clearance=(-1.5, 0)
+                            intf=cmp.IFs.gate, clearance=(1.5, 0.5)
                         )
-                    # gate via to signal plane
-                    transformer.insert_via_next_to(
-                        intf=cmp.IFs.gate, clearance=(1.5, 0.5)
-                    )
 
     # Done, and moved manually, so disabling now
     # USB VIA
@@ -165,7 +175,33 @@ def transform_pcb(transformer: PCB_Transformer):
     #        transformer.insert_via_line2(list(reversed(intfs[6:])), (6, 0), (0, -0.75))
 
     # --------------------------------------------------------------------------
+    def place_label(cmp: PairTester):
+        fp = PCB_Transformer.get_fp(cmp.CMPs.indicator.CMPs.led.CMPs.led)
+        assert len(fp.at.coord) == 3
+        assert cmp.parent is not None
+        name = cmp.parent[1]
+        # TODO move a bit
+        c = fp.at.coord
+        at = At.factory(
+            (
+                c[0],
+                c[1] - 1.5,
+                0,
+            )
+        )
 
+        transformer.insert_text(
+            text=name, at=at, font=(1 / 4, 1 / 4, 0.15 / 4), permanent=True
+        )
+
+    for cmp in t.get_all():
+        if isinstance(cmp, list):
+            for cmp_ in cmp:
+                place_label(cmp_)
+        if isinstance(cmp, PairTester):
+            place_label(cmp)
+
+    # --------------------------------------------------------------------------
     # rename, resize, relayer text
     for f in footprints:
         # ref
@@ -184,20 +220,14 @@ def transform_pcb(transformer: PCB_Transformer):
     # reposition silkscreen text
     for f in footprints:
         rot = f.at.coord[2]
-        if f.name in [
-            "lcsc:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR",
-            "lcsc:R0402",
-            "lcsc:LED0805-R-RD",
-        ]:
+        if f.name in [*MOSFET_FPS, RESISTOR_FP, LED_FP]:
             user_text = next(
                 filter(lambda x: not x.text.startswith("FBRK:"), f.user_text)
             )
             user_text.at.coord = (0, -2 if rot in [180, 270] else 2, rot)
 
 
-@click.command()
-@click.option("--nonetlist", "-p", is_flag=True, help="don't regenerate netlist")
-def main(nonetlist: bool):
+def main(nonetlist: bool = False, nopcb: bool = False):
     # paths
     build_dir = Path("./build")
     faebryk_build_dir = build_dir.joinpath("faebryk")
@@ -221,8 +251,12 @@ def main(nonetlist: bool):
             f"Import the netlist at {netlist_path.as_posix()}. Press 'Update PCB'. Place the components, save the file and exit kicad."
         )
         # pcbnew()
+        input()
 
     # pcb
+    if nopcb:
+        return
+
     pcb = PCB.load(pcbfile)
 
     transformer = PCB_Transformer(pcb, G)
@@ -238,4 +272,4 @@ def main(nonetlist: bool):
 
 
 if __name__ == "__main__":
-    main()
+    typer.run(main)
