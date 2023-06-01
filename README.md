@@ -3,9 +3,10 @@ TODO: fill in TODOs
 
 <div align="center">
 
-# {project}
+# CableTester
 
-<img height=300 title="Render" src="./render.png"/>
+<img height=300 title="Render" src="./render_front.png"/>
+<img height=300 title="Render" src="./render_back.png"/>
 <br/>
 
 {MiniDescription} - {project}
