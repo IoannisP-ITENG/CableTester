@@ -8,9 +8,9 @@ import library.lcsc as lcsc
 
 # library imports
 from faebryk.library.core import Component
-from faebryk.library.library.components import Resistor
+from faebryk.library.library.components import LED, Resistor
 from faebryk.library.library.interfaces import Electrical, Power
-from faebryk.library.library.parameters import Constant
+from faebryk.library.library.parameters import Constant, Range
 from faebryk.library.trait_impl.component import (
     has_defined_footprint_pinmap,
     has_defined_type_description,
@@ -23,6 +23,7 @@ from faebryk.library.util import get_all_components, times
 
 # Project library imports
 from library.library.components import (
+    MOSFET,
     DifferentialPair,
     PoweredLED,
     PowerSwitch,
@@ -90,7 +91,7 @@ class LEDIndicator(Component):
         self.CMPs = _CMPs(self)
 
         #
-        self.CMPs.led.IFs.power.connect_via(self.CMPs.power_switch, self.IFs.power_in)
+        self.IFs.power_in.connect_via(self.CMPs.power_switch, self.CMPs.led.IFs.power)
         self.CMPs.power_switch.IFs.logic_in.connect(self.IFs.logic_in)
 
 
@@ -207,6 +208,92 @@ class Tester(Component):
                 connect_diffpair_to_tester_pair(cable_pair, tester_pair)
 
 
+def pick_component(cmp: Component):
+    def _find_partno() -> str | None:
+        if isinstance(cmp, USB_C_Receptacle):
+            return "C134092"
+
+        if isinstance(cmp, RJ45_Receptacle):
+            return "C138392"
+
+        if isinstance(cmp, Resistor):
+            cmp.add_trait(has_symmetric_footprint_pinmap())
+
+            resistors = {
+                "C137885": Constant(300),
+                "C226726": Constant(5.1 * K),
+                "C25741": Constant(100 * K),
+                "C11702": Constant(1 * K),
+            }
+
+            for partno, resistance in resistors.items():
+                if (
+                    isinstance(cmp.resistance, Constant)
+                    and cmp.resistance.value == resistance.value
+                ):
+                    return partno
+                if (
+                    isinstance(cmp.resistance, Range)
+                    and resistance.value >= cmp.resistance.min
+                    and resistance.value <= cmp.resistance.max
+                ):
+                    cmp.set_resistance(resistance)
+                    return partno
+
+            raise Exception(
+                f"Could not find fitting resistor for value: {cmp.resistance}"
+            )
+
+        if isinstance(cmp, LED):
+            cmp.add_trait(
+                has_defined_footprint_pinmap(
+                    {
+                        "1": cmp.IFs.anode,
+                        "2": cmp.IFs.cathode,
+                    }
+                )
+            )
+
+            return "C84256"
+
+        if isinstance(cmp, MOSFET):
+            cmp.add_trait(
+                has_defined_footprint_pinmap(
+                    {
+                        "2": cmp.IFs.source,
+                        "3": cmp.IFs.drain,
+                        "1": cmp.IFs.gate,
+                    }
+                )
+            )
+
+            mosfets = {
+                "C8545": (
+                    MOSFET.ChannelType.N_CHANNEL,
+                    MOSFET.SaturationType.ENHANCEMENT,
+                ),
+                "C8492": (
+                    MOSFET.ChannelType.P_CHANNEL,
+                    MOSFET.SaturationType.ENHANCEMENT,
+                ),
+            }
+
+            for partno, (channel_type, sat_type) in mosfets.items():
+                if cmp.channel_type == channel_type and cmp.saturation_type == sat_type:
+                    return partno
+
+            raise Exception(
+                f"Could not find fitting mosfet for: {cmp.channel_type, cmp.saturation_type}"
+            )
+
+        return None
+
+    partno = _find_partno()
+    if partno is None:
+        return
+    lcsc.attach_footprint(cmp, partno)
+
+
 class Cable_Tester(Component):
     def __init__(self) -> None:
         super().__init__()
@@ -229,75 +316,32 @@ class Cable_Tester(Component):
 
         # function
 
-        # footprints
-        for cmp in get_all_components(self):
-            if isinstance(cmp, USB_C_Receptacle):
-                lcsc.attach_footprint(component=cmp, partno="C134092")
-            elif isinstance(cmp, RJ45_Receptacle):
-                lcsc.attach_footprint(component=cmp, partno="C138392")
-            elif isinstance(cmp, PairTester):
+        # fill parameters
+        cmps = get_all_components(self)
+        for cmp in cmps:
+            if isinstance(cmp, PairTester):
                 pairtester = cmp
                 pairtester.CMPs.indicator.CMPs.power_switch.CMPs.pull_resistor.set_resistance(
                     Constant(100 * K)
                 )
-                lcsc.attach_footprint(
-                    component=pairtester.CMPs.indicator.CMPs.power_switch.CMPs.pull_resistor,
-                    partno="C25741",
-                )
-                lcsc.attach_footprint(
-                    component=pairtester.CMPs.indicator.CMPs.power_switch.CMPs.mosfet,
-                    partno="C8545",
-                )
-                lcsc.attach_footprint(
-                    component=pairtester.CMPs.indicator.CMPs.led.CMPs.led,
-                    partno="C84256",
-                )
-                pairtester.CMPs.indicator.CMPs.led.CMPs.led.set_forward_parameters(
+            if isinstance(cmp, PoweredLED):
+                cmp.CMPs.led.set_forward_parameters(
                     voltage_V=Constant(2), current_A=Constant(10 * m)
                 )
-                # R_led = pairtester.CMPs.indicator.CMPs.led.CMPs.led.get_trait(LED.has_calculatable_needed_series_resistance).get_needed_series_resistance_ohm(5)
-                # 300R
-                pairtester.CMPs.indicator.CMPs.led.CMPs.current_limiting_resistor.set_resistance(
-                    Constant(300)
-                )
-                lcsc.attach_footprint(
-                    component=pairtester.CMPs.indicator.CMPs.led.CMPs.current_limiting_resistor,
-                    partno="C137885",
-                )
+                R_led = cmp.CMPs.led.get_trait(
+                    LED.has_calculatable_needed_series_resistance
+                ).get_needed_series_resistance_ohm(5)
+                # Take higher resistance for dimmer LED
+                R_led_dim = Range(R_led.value * 2, R_led.value * 4)
+                cmp.CMPs.current_limiting_resistor.set_resistance(R_led_dim)
+            if isinstance(cmp, LED):
+                cmp.add_trait(has_defined_type_description("D"))
+            if isinstance(cmp, MOSFET):
+                cmp.add_trait(has_defined_type_description("Q"))
 
-                pairtester.CMPs.indicator.CMPs.led.CMPs.current_limiting_resistor.add_trait(
-                    has_symmetric_footprint_pinmap()
-                )
-                pairtester.CMPs.indicator.CMPs.power_switch.CMPs.pull_resistor.add_trait(
-                    has_symmetric_footprint_pinmap()
-                )
-                pairtester.CMPs.indicator.CMPs.led.CMPs.led.add_trait(
-                    has_defined_footprint_pinmap(
-                        {
-                            "1": pairtester.CMPs.indicator.CMPs.led.CMPs.led.IFs.anode,
-                            "2": pairtester.CMPs.indicator.CMPs.led.CMPs.led.IFs.cathode,
-                        }
-                    )
-                )
-                pairtester.CMPs.indicator.CMPs.led.CMPs.led.add_trait(
-                    has_defined_type_description("D")
-                )
-                pairtester.CMPs.indicator.CMPs.power_switch.CMPs.mosfet.add_trait(
-                    has_defined_footprint_pinmap(
-                        {
-                            "2": pairtester.CMPs.indicator.CMPs.power_switch.CMPs.mosfet.IFs.source,
-                            "3": pairtester.CMPs.indicator.CMPs.power_switch.CMPs.mosfet.IFs.drain,
-                            "1": pairtester.CMPs.indicator.CMPs.power_switch.CMPs.mosfet.IFs.gate,
-                        }
-                    )
-                )
-                pairtester.CMPs.indicator.CMPs.power_switch.CMPs.mosfet.add_trait(
-                    has_defined_type_description("Q")
-                )
-            elif isinstance(cmp, USB_C_PSU):
-                for r in cmp.CMPs.configuration_resistors:
-                    lcsc.attach_footprint(component=r, partno="C60490")
-                    r.add_trait(has_symmetric_footprint_pinmap())
+        # footprints
+        for cmp in cmps:
+            pick_component(cmp)
 
         # hack footprints
         for r in get_all_components(self) + [self]:
