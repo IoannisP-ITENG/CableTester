@@ -22,7 +22,7 @@ from faebryk.exporters.netlist.kicad.netlist_kicad import from_faebryk_t2_netlis
 from faebryk.exporters.netlist.netlist import make_t2_netlist_from_t1
 from faebryk.library.core import Component
 from faebryk.library.util import get_all_components
-from library.kicadpcb import PCB
+from library.kicadpcb import PCB, At
 from library.library.components import MOSFET
 from library.pcbutil import PCB_Transformer
 
@@ -176,10 +176,23 @@ def transform_pcb(transformer: PCB_Transformer):
 
     # --------------------------------------------------------------------------
     def place_label(cmp: PairTester):
-        fp = PCB_Transformer.get_fp(
-            cmp.CMPs.indicator.CMPs.power_switch.CMPs.pull_resistor
+        fp = PCB_Transformer.get_fp(cmp.CMPs.indicator.CMPs.led.CMPs.led)
+        assert len(fp.at.coord) == 3
+        assert cmp.parent is not None
+        name = cmp.parent[1]
+        # TODO move a bit
+        c = fp.at.coord
+        at = At.factory(
+            (
+                c[0],
+                c[1] - 1.5,
+                0,
+            )
         )
-        print(fp.at)
+
+        transformer.insert_text(
+            text=name, at=at, font=(1 / 4, 1 / 4, 0.15 / 4), permanent=True
+        )
 
     for cmp in t.get_all():
         if isinstance(cmp, list):
