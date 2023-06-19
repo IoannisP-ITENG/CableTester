@@ -1,6 +1,3 @@
-TODO: replace `{}` and `<>` placeholders in this file.
-TODO: fill in TODOs
-
 <div align="center">
 
 # CableTester
