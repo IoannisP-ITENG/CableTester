@@ -9,7 +9,7 @@ TODO: fill in TODOs
 <img height=300 title="Render back" src="./render_back.png"/>
 <br/>
 
-{MiniDescription} - CableTester
+USB type-C and UTP cable tester designed in faebryk
 
 [![Version](https://img.shields.io/github/v/tag/IoannisP-ITENG/CableTester)](https://github.com/IoannisP-ITENG/CableTester/releases) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/IoannisP-ITENG/CableTester/blob/main/LICENSE) [![Pull requests open](https://img.shields.io/github/issues-pr/IoannisP-ITENG/CableTester)](https://github.com/IoannisP-ITENG/CableTester/pulls) [![Issues open](https://img.shields.io/github/issues/IoannisP-ITENG/CableTester)](https://github.com/IoannisP-ITENG/CableTester/issues) [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/IoannisP-ITENG/CableTester)](https://github.com/IoannisP-ITENG/CableTester/commits/main) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
