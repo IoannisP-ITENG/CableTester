@@ -28,6 +28,58 @@ This project is build with the open-source EDA [faebryk](https://github.com/faeb
 
 TODO
 
+### Example
+
+<details>
+  <summary>An example of the power of faebryk for PCB design</summary>
+
+</br>
+
+Auto placing components.
+
+```bash
+# Generate the netlist with faebryk
+python ./source/faebryk/main.py
+INFO:__main__:Backup old netlist at ./source/kicad/main/main.net.bak
+INFO:__main__:Writing Experiment netlist to ./source/kicad/main/main.net
+INFO:__main__:Opening kicad to import new netlist
+Import the netlist at ./source/kicad/main/main.net. Press 'Update 
+PCB'. Place the components, save the file and exit kicad.
+
+# Let faebryk auto-place your component in a parametric way
+INFO:__main__:Writing pcbfile ./source/kicad/main/main.kicad_pcb
+```
+
+After importing the generated netlist into KiCad, the layout looks like this:
+
+<img height=300 title="KiCad after importing the netlist" src="./docs/netlist_import_kicad.png"/>
+
+Let faebryk do the parametric auto placing by using transform functions and coordinates:
+
+```python
+# component, rotation
+layout_rotation_degrees: List[Tuple[Component, int]] = [
+    (pr, 270),
+    (mos, 180),
+    (clr, 270),
+    (led, 0),
+]
+
+# left, up, right, down
+component_clearances_mm = {
+    LED_FP: (2.25, 1, 2, 1),
+    RESISTOR_FP: (1, 0.5, 1, 0.5),
+    MOSFET_FPS[0]: (2, 3.25, 2, 3.25),
+    MOSFET_FPS[1]: (2, 3.25, 2, 3.25),
+}
+```
+
+And you will get a parametrized PCB layout:
+
+<img height=300 title="Kicad after autoplacing by faebryk" src="./docs/auto_place_kicad.png"/>
+
+</details>
+
 ## Working with the source files
 
 See [here](./docs/development.md) for the instructions on how to install and edit this project.
