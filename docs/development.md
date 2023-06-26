@@ -38,7 +38,7 @@ Install the following programs:
 
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [Python 3](https://www.python.org/) (add to PATH)
-- [KiCad 6](https://www.kicad.org/)
+- [KiCad 7](https://www.kicad.org/)
 - [git](https://git-scm.com/)
 
 ### Step 2
@@ -46,11 +46,11 @@ Install the following programs:
 Clone this repository and install the requirements
 
 ```bash
-git clone <url>
+git clone https://github.com/IoannisP-ITENG/CableTester
 ```
 
 ```bash
-cd <project>
+cd CableTester
 
 # create venv (optional)
 mkdir .local
@@ -78,11 +78,11 @@ Open the `./source/kicad/main.prj` file in KiCad.
 
 ## Editing the project
 
-The file you will work with most is the `./source/faebryk/main.py`. Here you describe your design in faebryk.
+The files you will work with most are `./source/faebryk/main.py` and `./source/faebryk/cable_tester.py`. Here you describe your design in faebryk.
 
 If you want to create your own components, traits or modules specific to this project you can place them in `./source/faebryk/library/<thing you want to add>`.
 
-The PCB layout can be eddited in KiCad 6 by edditing the `./souce/kicad/main/main.kicad_pcb` file. If you changed anything in the faebryk source, you have to re-import the netlist into KiCad like so:
+The PCB layout can be eddited in KiCad 7 by edditing the `./souce/kicad/main/main.kicad_pcb` file. If you changed anything in the faebryk source, you have to re-import the netlist into KiCad like so:
 
 - `file > import > netlist`
 - Select the file `./build/faebryk/faebryk.net`
