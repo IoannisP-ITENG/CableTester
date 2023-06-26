@@ -62,7 +62,7 @@ class PCB(Node):
 
     @classmethod
     def load(cls, path: Path):
-        return cls(sexpdata.loads(path.read_text()))
+        return cls(sexpdata.loads(path.read_text(encoding="utf-8")))
 
     def dump(self, path: Path):
         def remove_empty(x):
@@ -73,7 +73,7 @@ class PCB(Node):
 
         cleaned = remove_empty(self.node)
         pcbsexpout = sexpdata.dumps(cleaned)
-        return path.write_text(pcbsexpout)
+        return path.write_text(pcbsexpout, encoding="utf-8")
 
 
 class Footprint(Node):
@@ -270,6 +270,7 @@ class FP_Text(Text):
     def factory(cls, text: str, at: "At", layer: str, font: Text.Font, tstamp: str):
         generic = Text.factory(text, at, layer, font, tstamp, text_type="fp_text")
         generic.node.insert(1, Symbol("user"))
+        return generic
 
 
 class GR_Text(Text):
