@@ -7,9 +7,9 @@ __pycache__/
 *.so
 
 # KiCad
-source/kicad/*/*-backups
-source/kicad/*/_autosave-*
-source/kicad/*/*cache
+src/kicad/*/*-backups
+src/kicad/*/_autosave-*
+src/kicad/*/*cache
 
 # Distribution / packaging
 .Python
@@ -101,3 +101,5 @@ ENV/
 _local
 .local
 *.bak
+
+poetry.lock

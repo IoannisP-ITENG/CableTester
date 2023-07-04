@@ -1,35 +1,132 @@
-[tool.isort]
-profile = "black"
+[tool.ruff]
+# Enable pycodestyle (`E`) and Pyflakes (`F`) codes by default.
+select = [
+    # Pycodestyle
+    "E",
+    "W",
+    # Pyflakes
+    "F",
+    # Isort
+    "I001",
+]
+ignore = [
+    # Line too long
+    #"E501",
+]
 
-[tool.autoflake]
-remove-all-unused-imports = true
-ignore-init-module-imports = true
-expand-star-imports = true
-# leaves rhs for stateless functions too, which is not really clear
-# could add remove-rhs-for-unused-variables, but that might break a lot of stuff
-# so for now we keep this false
-remove-unused-variables = false
+# Allow autofix for all enabled rules (when `--fix`) is provided.
+fixable = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "I",
+    "N",
+    "Q",
+    "S",
+    "T",
+    "W",
+    "ANN",
+    "ARG",
+    "BLE",
+    "COM",
+    "DJ",
+    "DTZ",
+    "EM",
+    "ERA",
+    "EXE",
+    "FBT",
+    "ICN",
+    "INP",
+    "ISC",
+    "NPY",
+    "PD",
+    "PGH",
+    "PIE",
+    "PL",
+    "PT",
+    "PTH",
+    "PYI",
+    "RET",
+    "RSE",
+    "RUF",
+    "SIM",
+    "SLF",
+    "TCH",
+    "TID",
+    "TRY",
+    "UP",
+    "YTT",
+]
+unfixable = []
+
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+]
+per-file-ignores = {}
+
+# Same as Black.
+line-length = 88
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+target-version = "py311"
+
+[tool.ruff.mccabe]
+# Unlike Flake8, default to a complexity level of 10.
+max-complexity = 10
 
 [tool.pytest.ini_options]
 addopts = [
     "--import-mode=importlib",
 ]
 
-[project]
+[tool.poetry]
 name = "CableTester"
 version = "2.0.0"
-authors = [
-    { name="ioannis_iteng", email="ioannis@iteng.nl" },
-]
-readme = "README.md"
-license = { file="LICENSE" }
-requires-python = ">=3.9"
+authors = ["ioannis_iteng <ioannis@iteng.nl>"]
+readme = ["README.md", "LICENSE"]
+license = "MIT"
+description = ""
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-dependencies = [
-	"typer[all]",
-    "faebryk"
-]
+repository = "https://github.com/IoannisP-ITENG/CableTester"
+
+[tool.poetry.dependencies]
+typer = { version = "^0.9.0", extras = ["all"] }
+faebryk = {path = "../../faebryk", develop = true}
+python = ">=3.11"
+pydantic = "^1.5" #fix for easyeda2kicad
+
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^2.20.0"
+pytest = "^7.1.3"
