@@ -9,8 +9,9 @@ from faebryk.library.LED import LED
 from faebryk.library.MOSFET import MOSFET
 from faebryk.library.Range import Range
 from faebryk.library.Resistor import Resistor
+from faebryk.library.RJ45_Receptacle import RJ45_Receptacle
 from faebryk.library.USB_Type_C_Receptacle_24_pin import USB_Type_C_Receptacle_24_pin
-from faebryk.libs.units import K
+from faebryk.libs.units import k
 
 
 def pick_component(cmp: Module):
@@ -18,7 +19,7 @@ def pick_component(cmp: Module):
         if isinstance(cmp, USB_Type_C_Receptacle_24_pin):
             return "C134092"
 
-        if isinstance(cmp, USB_Type_C_Receptacle_24_pin):
+        if isinstance(cmp, RJ45_Receptacle):
             return "C138392"
 
         if isinstance(cmp, Resistor):
@@ -27,9 +28,9 @@ def pick_component(cmp: Module):
 
             resistors = {
                 "C137885": Constant(300),
-                "C226726": Constant(5.1 * K),
-                "C25741": Constant(100 * K),
-                "C11702": Constant(1 * K),
+                "C226726": Constant(5.1 * k),
+                "C25741": Constant(100 * k),
+                "C11702": Constant(1 * k),
             }
 
             for partno, resistance in resistors.items():

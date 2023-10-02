@@ -15,7 +15,7 @@ from faebryk.library.Range import Range
 from faebryk.library.RJ45_Receptacle import RJ45_Receptacle
 from faebryk.library.USB_C_PSU import USB_C_PSU
 from faebryk.library.USB_Type_C_Receptacle_24_pin import USB_Type_C_Receptacle_24_pin
-from faebryk.libs.units import K, m
+from faebryk.libs.units import k, m
 from faebryk.libs.util import times
 
 logger = logging.getLogger(__name__)
@@ -165,7 +165,7 @@ class Cable_Tester(Module):
             if isinstance(cmp, PairTester):
                 pairtester = cmp
                 pairtester.NODEs.indicator.NODEs.power_switch.NODEs.pull_resistor.set_resistance(
-                    Constant(100 * K)
+                    Constant(100 * k)
                 )
             if isinstance(cmp, PoweredLED):
                 cmp.NODEs.led.set_forward_parameters(
