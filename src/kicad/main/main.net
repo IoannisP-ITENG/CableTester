@@ -1,0 +1,2228 @@
+(export 
+    (version D) 
+    (components 
+        (comp 
+            (ref *.psu.configuration_resistors[0][Resistor:5.1kΩ]) 
+            (value 5.1kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 1) 
+            (property 
+                (name LCSC) 
+                (value C226726))) 
+        (comp 
+            (ref *.psu.configuration_resistors[1][Resistor:5.1kΩ]) 
+            (value 5.1kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 2) 
+            (property 
+                (name LCSC) 
+                (value C226726))) 
+        (comp 
+            (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+            (value x) 
+            (footprint lcsc:USB-C-SMD_TYPE-C-USB-18) 
+            (tstamp 3) 
+            (property 
+                (name LCSC) 
+                (value C134092))) 
+        (comp 
+            (ref *.tester.cc1.indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+            (value 1.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 4) 
+            (property 
+                (name LCSC) 
+                (value C11702))) 
+        (comp 
+            (ref *.tester.cc1.indicator.led.led[LED:D]) 
+            (value D) 
+            (footprint lcsc:LED0805-R-RD) 
+            (tstamp 5) 
+            (property 
+                (name LCSC) 
+                (value C84256))) 
+        (comp 
+            (ref *.tester.cc1.indicator.power_switch.mosfet[MOSFET:Q]) 
+            (value Q) 
+            (footprint lcsc:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR) 
+            (tstamp 6) 
+            (property 
+                (name LCSC) 
+                (value C8545))) 
+        (comp 
+            (ref *.tester.cc1.indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+            (value 100.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 7) 
+            (property 
+                (name LCSC) 
+                (value C25741))) 
+        (comp 
+            (ref *.tester.cc2.indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+            (value 1.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 8) 
+            (property 
+                (name LCSC) 
+                (value C11702))) 
+        (comp 
+            (ref *.tester.cc2.indicator.led.led[LED:D]) 
+            (value D) 
+            (footprint lcsc:LED0805-R-RD) 
+            (tstamp 9) 
+            (property 
+                (name LCSC) 
+                (value C84256))) 
+        (comp 
+            (ref *.tester.cc2.indicator.power_switch.mosfet[MOSFET:Q]) 
+            (value Q) 
+            (footprint lcsc:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR) 
+            (tstamp 10) 
+            (property 
+                (name LCSC) 
+                (value C8545))) 
+        (comp 
+            (ref *.tester.cc2.indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+            (value 100.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 11) 
+            (property 
+                (name LCSC) 
+                (value C25741))) 
+        (comp 
+            (ref *.tester.d1[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+            (value 1.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 12) 
+            (property 
+                (name LCSC) 
+                (value C11702))) 
+        (comp 
+            (ref *.tester.d1[0].indicator.led.led[LED:D]) 
+            (value D) 
+            (footprint lcsc:LED0805-R-RD) 
+            (tstamp 13) 
+            (property 
+                (name LCSC) 
+                (value C84256))) 
+        (comp 
+            (ref *.tester.d1[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+            (value Q) 
+            (footprint lcsc:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR) 
+            (tstamp 14) 
+            (property 
+                (name LCSC) 
+                (value C8545))) 
+        (comp 
+            (ref *.tester.d1[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+            (value 100.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 15) 
+            (property 
+                (name LCSC) 
+                (value C25741))) 
+        (comp 
+            (ref *.tester.d1[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+            (value 1.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 16) 
+            (property 
+                (name LCSC) 
+                (value C11702))) 
+        (comp 
+            (ref *.tester.d1[1].indicator.led.led[LED:D]) 
+            (value D) 
+            (footprint lcsc:LED0805-R-RD) 
+            (tstamp 17) 
+            (property 
+                (name LCSC) 
+                (value C84256))) 
+        (comp 
+            (ref *.tester.d1[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+            (value Q) 
+            (footprint lcsc:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR) 
+            (tstamp 18) 
+            (property 
+                (name LCSC) 
+                (value C8545))) 
+        (comp 
+            (ref *.tester.d1[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+            (value 100.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 19) 
+            (property 
+                (name LCSC) 
+                (value C25741))) 
+        (comp 
+            (ref *.tester.d2[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+            (value 1.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 20) 
+            (property 
+                (name LCSC) 
+                (value C11702))) 
+        (comp 
+            (ref *.tester.d2[0].indicator.led.led[LED:D]) 
+            (value D) 
+            (footprint lcsc:LED0805-R-RD) 
+            (tstamp 21) 
+            (property 
+                (name LCSC) 
+                (value C84256))) 
+        (comp 
+            (ref *.tester.d2[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+            (value Q) 
+            (footprint lcsc:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR) 
+            (tstamp 22) 
+            (property 
+                (name LCSC) 
+                (value C8545))) 
+        (comp 
+            (ref *.tester.d2[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+            (value 100.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 23) 
+            (property 
+                (name LCSC) 
+                (value C25741))) 
+        (comp 
+            (ref *.tester.d2[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+            (value 1.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 24) 
+            (property 
+                (name LCSC) 
+                (value C11702))) 
+        (comp 
+            (ref *.tester.d2[1].indicator.led.led[LED:D]) 
+            (value D) 
+            (footprint lcsc:LED0805-R-RD) 
+            (tstamp 25) 
+            (property 
+                (name LCSC) 
+                (value C84256))) 
+        (comp 
+            (ref *.tester.d2[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+            (value Q) 
+            (footprint lcsc:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR) 
+            (tstamp 26) 
+            (property 
+                (name LCSC) 
+                (value C8545))) 
+        (comp 
+            (ref *.tester.d2[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+            (value 100.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 27) 
+            (property 
+                (name LCSC) 
+                (value C25741))) 
+        (comp 
+            (ref *.tester.gnd[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+            (value 1.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 28) 
+            (property 
+                (name LCSC) 
+                (value C11702))) 
+        (comp 
+            (ref *.tester.gnd[0].indicator.led.led[LED:D]) 
+            (value D) 
+            (footprint lcsc:LED0805-R-RD) 
+            (tstamp 29) 
+            (property 
+                (name LCSC) 
+                (value C84256))) 
+        (comp 
+            (ref *.tester.gnd[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+            (value Q) 
+            (footprint lcsc:SOT-23_L2.9-W1.3-P1.90-LS2.4-BR) 
+            (tstamp 30) 
+            (property 
+                (name LCSC) 
+                (value C8492))) 
+        (comp 
+            (ref *.tester.gnd[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+            (value 100.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 31) 
+            (property 
+                (name LCSC) 
+                (value C25741))) 
+        (comp 
+            (ref *.tester.gnd[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+            (value 1.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 32) 
+            (property 
+                (name LCSC) 
+                (value C11702))) 
+        (comp 
+            (ref *.tester.gnd[1].indicator.led.led[LED:D]) 
+            (value D) 
+            (footprint lcsc:LED0805-R-RD) 
+            (tstamp 33) 
+            (property 
+                (name LCSC) 
+                (value C84256))) 
+        (comp 
+            (ref *.tester.gnd[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+            (value Q) 
+            (footprint lcsc:SOT-23_L2.9-W1.3-P1.90-LS2.4-BR) 
+            (tstamp 34) 
+            (property 
+                (name LCSC) 
+                (value C8492))) 
+        (comp 
+            (ref *.tester.gnd[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+            (value 100.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 35) 
+            (property 
+                (name LCSC) 
+                (value C25741))) 
+        (comp 
+            (ref *.tester.gnd[2].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+            (value 1.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 36) 
+            (property 
+                (name LCSC) 
+                (value C11702))) 
+        (comp 
+            (ref *.tester.gnd[2].indicator.led.led[LED:D]) 
+            (value D) 
+            (footprint lcsc:LED0805-R-RD) 
+            (tstamp 37) 
+            (property 
+                (name LCSC) 
+                (value C84256))) 
+        (comp 
+            (ref *.tester.gnd[2].indicator.power_switch.mosfet[MOSFET:Q]) 
+            (value Q) 
+            (footprint lcsc:SOT-23_L2.9-W1.3-P1.90-LS2.4-BR) 
+            (tstamp 38) 
+            (property 
+                (name LCSC) 
+                (value C8492))) 
+        (comp 
+            (ref *.tester.gnd[2].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+            (value 100.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 39) 
+            (property 
+                (name LCSC) 
+                (value C25741))) 
+        (comp 
+            (ref *.tester.gnd[3].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+            (value 1.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 40) 
+            (property 
+                (name LCSC) 
+                (value C11702))) 
+        (comp 
+            (ref *.tester.gnd[3].indicator.led.led[LED:D]) 
+            (value D) 
+            (footprint lcsc:LED0805-R-RD) 
+            (tstamp 41) 
+            (property 
+                (name LCSC) 
+                (value C84256))) 
+        (comp 
+            (ref *.tester.gnd[3].indicator.power_switch.mosfet[MOSFET:Q]) 
+            (value Q) 
+            (footprint lcsc:SOT-23_L2.9-W1.3-P1.90-LS2.4-BR) 
+            (tstamp 42) 
+            (property 
+                (name LCSC) 
+                (value C8492))) 
+        (comp 
+            (ref *.tester.gnd[3].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+            (value 100.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 43) 
+            (property 
+                (name LCSC) 
+                (value C25741))) 
+        (comp 
+            (ref *.tester.pair1_rx1[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+            (value 1.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 44) 
+            (property 
+                (name LCSC) 
+                (value C11702))) 
+        (comp 
+            (ref *.tester.pair1_rx1[0].indicator.led.led[LED:D]) 
+            (value D) 
+            (footprint lcsc:LED0805-R-RD) 
+            (tstamp 45) 
+            (property 
+                (name LCSC) 
+                (value C84256))) 
+        (comp 
+            (ref *.tester.pair1_rx1[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+            (value Q) 
+            (footprint lcsc:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR) 
+            (tstamp 46) 
+            (property 
+                (name LCSC) 
+                (value C8545))) 
+        (comp 
+            (ref *.tester.pair1_rx1[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+            (value 100.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 47) 
+            (property 
+                (name LCSC) 
+                (value C25741))) 
+        (comp 
+            (ref *.tester.pair1_rx1[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+            (value 1.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 48) 
+            (property 
+                (name LCSC) 
+                (value C11702))) 
+        (comp 
+            (ref *.tester.pair1_rx1[1].indicator.led.led[LED:D]) 
+            (value D) 
+            (footprint lcsc:LED0805-R-RD) 
+            (tstamp 49) 
+            (property 
+                (name LCSC) 
+                (value C84256))) 
+        (comp 
+            (ref *.tester.pair1_rx1[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+            (value Q) 
+            (footprint lcsc:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR) 
+            (tstamp 50) 
+            (property 
+                (name LCSC) 
+                (value C8545))) 
+        (comp 
+            (ref *.tester.pair1_rx1[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+            (value 100.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 51) 
+            (property 
+                (name LCSC) 
+                (value C25741))) 
+        (comp 
+            (ref *.tester.pair2_rx2[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+            (value 1.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 52) 
+            (property 
+                (name LCSC) 
+                (value C11702))) 
+        (comp 
+            (ref *.tester.pair2_rx2[0].indicator.led.led[LED:D]) 
+            (value D) 
+            (footprint lcsc:LED0805-R-RD) 
+            (tstamp 53) 
+            (property 
+                (name LCSC) 
+                (value C84256))) 
+        (comp 
+            (ref *.tester.pair2_rx2[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+            (value Q) 
+            (footprint lcsc:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR) 
+            (tstamp 54) 
+            (property 
+                (name LCSC) 
+                (value C8545))) 
+        (comp 
+            (ref *.tester.pair2_rx2[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+            (value 100.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 55) 
+            (property 
+                (name LCSC) 
+                (value C25741))) 
+        (comp 
+            (ref *.tester.pair2_rx2[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+            (value 1.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 56) 
+            (property 
+                (name LCSC) 
+                (value C11702))) 
+        (comp 
+            (ref *.tester.pair2_rx2[1].indicator.led.led[LED:D]) 
+            (value D) 
+            (footprint lcsc:LED0805-R-RD) 
+            (tstamp 57) 
+            (property 
+                (name LCSC) 
+                (value C84256))) 
+        (comp 
+            (ref *.tester.pair2_rx2[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+            (value Q) 
+            (footprint lcsc:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR) 
+            (tstamp 58) 
+            (property 
+                (name LCSC) 
+                (value C8545))) 
+        (comp 
+            (ref *.tester.pair2_rx2[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+            (value 100.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 59) 
+            (property 
+                (name LCSC) 
+                (value C25741))) 
+        (comp 
+            (ref *.tester.pair3_tx1[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+            (value 1.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 60) 
+            (property 
+                (name LCSC) 
+                (value C11702))) 
+        (comp 
+            (ref *.tester.pair3_tx1[0].indicator.led.led[LED:D]) 
+            (value D) 
+            (footprint lcsc:LED0805-R-RD) 
+            (tstamp 61) 
+            (property 
+                (name LCSC) 
+                (value C84256))) 
+        (comp 
+            (ref *.tester.pair3_tx1[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+            (value Q) 
+            (footprint lcsc:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR) 
+            (tstamp 62) 
+            (property 
+                (name LCSC) 
+                (value C8545))) 
+        (comp 
+            (ref *.tester.pair3_tx1[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+            (value 100.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 63) 
+            (property 
+                (name LCSC) 
+                (value C25741))) 
+        (comp 
+            (ref *.tester.pair3_tx1[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+            (value 1.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 64) 
+            (property 
+                (name LCSC) 
+                (value C11702))) 
+        (comp 
+            (ref *.tester.pair3_tx1[1].indicator.led.led[LED:D]) 
+            (value D) 
+            (footprint lcsc:LED0805-R-RD) 
+            (tstamp 65) 
+            (property 
+                (name LCSC) 
+                (value C84256))) 
+        (comp 
+            (ref *.tester.pair3_tx1[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+            (value Q) 
+            (footprint lcsc:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR) 
+            (tstamp 66) 
+            (property 
+                (name LCSC) 
+                (value C8545))) 
+        (comp 
+            (ref *.tester.pair3_tx1[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+            (value 100.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 67) 
+            (property 
+                (name LCSC) 
+                (value C25741))) 
+        (comp 
+            (ref *.tester.pair4_tx2[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+            (value 1.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 68) 
+            (property 
+                (name LCSC) 
+                (value C11702))) 
+        (comp 
+            (ref *.tester.pair4_tx2[0].indicator.led.led[LED:D]) 
+            (value D) 
+            (footprint lcsc:LED0805-R-RD) 
+            (tstamp 69) 
+            (property 
+                (name LCSC) 
+                (value C84256))) 
+        (comp 
+            (ref *.tester.pair4_tx2[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+            (value Q) 
+            (footprint lcsc:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR) 
+            (tstamp 70) 
+            (property 
+                (name LCSC) 
+                (value C8545))) 
+        (comp 
+            (ref *.tester.pair4_tx2[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+            (value 100.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 71) 
+            (property 
+                (name LCSC) 
+                (value C25741))) 
+        (comp 
+            (ref *.tester.pair4_tx2[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+            (value 1.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 72) 
+            (property 
+                (name LCSC) 
+                (value C11702))) 
+        (comp 
+            (ref *.tester.pair4_tx2[1].indicator.led.led[LED:D]) 
+            (value D) 
+            (footprint lcsc:LED0805-R-RD) 
+            (tstamp 73) 
+            (property 
+                (name LCSC) 
+                (value C84256))) 
+        (comp 
+            (ref *.tester.pair4_tx2[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+            (value Q) 
+            (footprint lcsc:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR) 
+            (tstamp 74) 
+            (property 
+                (name LCSC) 
+                (value C8545))) 
+        (comp 
+            (ref *.tester.pair4_tx2[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+            (value 100.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 75) 
+            (property 
+                (name LCSC) 
+                (value C25741))) 
+        (comp 
+            (ref *.tester.rj45[0][RJ45_Receptacle:x]) 
+            (value x) 
+            (footprint lcsc:RJ45-TH_B-1-1) 
+            (tstamp 76) 
+            (property 
+                (name LCSC) 
+                (value C138392))) 
+        (comp 
+            (ref *.tester.rj45[1][RJ45_Receptacle:x]) 
+            (value x) 
+            (footprint lcsc:RJ45-TH_B-1-1) 
+            (tstamp 77) 
+            (property 
+                (name LCSC) 
+                (value C138392))) 
+        (comp 
+            (ref *.tester.sbu1.indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+            (value 1.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 78) 
+            (property 
+                (name LCSC) 
+                (value C11702))) 
+        (comp 
+            (ref *.tester.sbu1.indicator.led.led[LED:D]) 
+            (value D) 
+            (footprint lcsc:LED0805-R-RD) 
+            (tstamp 79) 
+            (property 
+                (name LCSC) 
+                (value C84256))) 
+        (comp 
+            (ref *.tester.sbu1.indicator.power_switch.mosfet[MOSFET:Q]) 
+            (value Q) 
+            (footprint lcsc:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR) 
+            (tstamp 80) 
+            (property 
+                (name LCSC) 
+                (value C8545))) 
+        (comp 
+            (ref *.tester.sbu1.indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+            (value 100.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 81) 
+            (property 
+                (name LCSC) 
+                (value C25741))) 
+        (comp 
+            (ref *.tester.sbu2.indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+            (value 1.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 82) 
+            (property 
+                (name LCSC) 
+                (value C11702))) 
+        (comp 
+            (ref *.tester.sbu2.indicator.led.led[LED:D]) 
+            (value D) 
+            (footprint lcsc:LED0805-R-RD) 
+            (tstamp 83) 
+            (property 
+                (name LCSC) 
+                (value C84256))) 
+        (comp 
+            (ref *.tester.sbu2.indicator.power_switch.mosfet[MOSFET:Q]) 
+            (value Q) 
+            (footprint lcsc:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR) 
+            (tstamp 84) 
+            (property 
+                (name LCSC) 
+                (value C8545))) 
+        (comp 
+            (ref *.tester.sbu2.indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+            (value 100.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 85) 
+            (property 
+                (name LCSC) 
+                (value C25741))) 
+        (comp 
+            (ref *.tester.shield.indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+            (value 1.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 86) 
+            (property 
+                (name LCSC) 
+                (value C11702))) 
+        (comp 
+            (ref *.tester.shield.indicator.led.led[LED:D]) 
+            (value D) 
+            (footprint lcsc:LED0805-R-RD) 
+            (tstamp 87) 
+            (property 
+                (name LCSC) 
+                (value C84256))) 
+        (comp 
+            (ref *.tester.shield.indicator.power_switch.mosfet[MOSFET:Q]) 
+            (value Q) 
+            (footprint lcsc:SOT-23_L2.9-W1.3-P1.90-LS2.4-BR) 
+            (tstamp 88) 
+            (property 
+                (name LCSC) 
+                (value C8492))) 
+        (comp 
+            (ref *.tester.shield.indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+            (value 100.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 89) 
+            (property 
+                (name LCSC) 
+                (value C25741))) 
+        (comp 
+            (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+            (value x) 
+            (footprint lcsc:USB-C-SMD_TYPE-C-USB-18) 
+            (tstamp 90) 
+            (property 
+                (name LCSC) 
+                (value C134092))) 
+        (comp 
+            (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+            (value x) 
+            (footprint lcsc:USB-C-SMD_TYPE-C-USB-18) 
+            (tstamp 91) 
+            (property 
+                (name LCSC) 
+                (value C134092))) 
+        (comp 
+            (ref *.tester.vbus[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+            (value 1.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 92) 
+            (property 
+                (name LCSC) 
+                (value C11702))) 
+        (comp 
+            (ref *.tester.vbus[0].indicator.led.led[LED:D]) 
+            (value D) 
+            (footprint lcsc:LED0805-R-RD) 
+            (tstamp 93) 
+            (property 
+                (name LCSC) 
+                (value C84256))) 
+        (comp 
+            (ref *.tester.vbus[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+            (value Q) 
+            (footprint lcsc:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR) 
+            (tstamp 94) 
+            (property 
+                (name LCSC) 
+                (value C8545))) 
+        (comp 
+            (ref *.tester.vbus[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+            (value 100.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 95) 
+            (property 
+                (name LCSC) 
+                (value C25741))) 
+        (comp 
+            (ref *.tester.vbus[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+            (value 1.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 96) 
+            (property 
+                (name LCSC) 
+                (value C11702))) 
+        (comp 
+            (ref *.tester.vbus[1].indicator.led.led[LED:D]) 
+            (value D) 
+            (footprint lcsc:LED0805-R-RD) 
+            (tstamp 97) 
+            (property 
+                (name LCSC) 
+                (value C84256))) 
+        (comp 
+            (ref *.tester.vbus[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+            (value Q) 
+            (footprint lcsc:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR) 
+            (tstamp 98) 
+            (property 
+                (name LCSC) 
+                (value C8545))) 
+        (comp 
+            (ref *.tester.vbus[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+            (value 100.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 99) 
+            (property 
+                (name LCSC) 
+                (value C25741))) 
+        (comp 
+            (ref *.tester.vbus[2].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+            (value 1.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 100) 
+            (property 
+                (name LCSC) 
+                (value C11702))) 
+        (comp 
+            (ref *.tester.vbus[2].indicator.led.led[LED:D]) 
+            (value D) 
+            (footprint lcsc:LED0805-R-RD) 
+            (tstamp 101) 
+            (property 
+                (name LCSC) 
+                (value C84256))) 
+        (comp 
+            (ref *.tester.vbus[2].indicator.power_switch.mosfet[MOSFET:Q]) 
+            (value Q) 
+            (footprint lcsc:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR) 
+            (tstamp 102) 
+            (property 
+                (name LCSC) 
+                (value C8545))) 
+        (comp 
+            (ref *.tester.vbus[2].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+            (value 100.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 103) 
+            (property 
+                (name LCSC) 
+                (value C25741))) 
+        (comp 
+            (ref *.tester.vbus[3].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+            (value 1.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 104) 
+            (property 
+                (name LCSC) 
+                (value C11702))) 
+        (comp 
+            (ref *.tester.vbus[3].indicator.led.led[LED:D]) 
+            (value D) 
+            (footprint lcsc:LED0805-R-RD) 
+            (tstamp 105) 
+            (property 
+                (name LCSC) 
+                (value C84256))) 
+        (comp 
+            (ref *.tester.vbus[3].indicator.power_switch.mosfet[MOSFET:Q]) 
+            (value Q) 
+            (footprint lcsc:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR) 
+            (tstamp 106) 
+            (property 
+                (name LCSC) 
+                (value C8545))) 
+        (comp 
+            (ref *.tester.vbus[3].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+            (value 100.0kΩ) 
+            (footprint lcsc:R0402) 
+            (tstamp 107) 
+            (property 
+                (name LCSC) 
+                (value C25741)))) 
+    (nets 
+        (net 
+            (code 1) 
+            (name *.psu.configuration_resistors[0][Resistor:5.1kΩ]-1-*.psu.configuration_resistors[1][Resistor:5.1kΩ]-1-*.psu.usb[USB_Type_C_Receptacle_24_pin:x]-A1-*.psu.usb[USB_Type_C_Receptacle_24_pin:x]-A12-*.psu.usb[USB_Type_C_Receptacle_24_pin:x]-B1-*.psu.usb[USB_Type_C_Receptacle_24_pin:x]-B12-*.tester.cc1.indicator.power_switch.mosfet[MOSFET:Q]-2-*.tester.cc1.indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-1-*.tester.cc2.indicator.power_switch.mosfet[MOSFET:Q]-2-*.tester.cc2.indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-1-*.tester.d1[0].indicator.power_switch.mosfet[MOSFET:Q]-2-*.tester.d1[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-1-*.tester.d1[1].indicator.power_switch.mosfet[MOSFET:Q]-2-*.tester.d1[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-1-*.tester.d2[0].indicator.power_switch.mosfet[MOSFET:Q]-2-*.tester.d2[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-1-*.tester.d2[1].indicator.power_switch.mosfet[MOSFET:Q]-2-*.tester.d2[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-1-*.tester.gnd[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-2-*.tester.gnd[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-2-*.tester.gnd[2].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-2-*.tester.gnd[3].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-2-*.tester.pair1_rx1[0].indicator.power_switch.mosfet[MOSFET:Q]-2-*.tester.pair1_rx1[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-1-*.tester.pair1_rx1[1].indicator.power_switch.mosfet[MOSFET:Q]-2-*.tester.pair1_rx1[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-1-*.tester.pair2_rx2[0].indicator.power_switch.mosfet[MOSFET:Q]-2-*.tester.pair2_rx2[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-1-*.tester.pair2_rx2[1].indicator.power_switch.mosfet[MOSFET:Q]-2-*.tester.pair2_rx2[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-1-*.tester.pair3_tx1[0].indicator.power_switch.mosfet[MOSFET:Q]-2-*.tester.pair3_tx1[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-1-*.tester.pair3_tx1[1].indicator.power_switch.mosfet[MOSFET:Q]-2-*.tester.pair3_tx1[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-1-*.tester.pair4_tx2[0].indicator.power_switch.mosfet[MOSFET:Q]-2-*.tester.pair4_tx2[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-1-*.tester.pair4_tx2[1].indicator.power_switch.mosfet[MOSFET:Q]-2-*.tester.pair4_tx2[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-1-*.tester.sbu1.indicator.power_switch.mosfet[MOSFET:Q]-2-*.tester.sbu1.indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-1-*.tester.sbu2.indicator.power_switch.mosfet[MOSFET:Q]-2-*.tester.sbu2.indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-1-*.tester.shield.indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-2-*.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-0-*.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-A1-*.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-A12-*.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-B1-*.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-B12-*.tester.vbus[0].indicator.power_switch.mosfet[MOSFET:Q]-2-*.tester.vbus[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-1-*.tester.vbus[1].indicator.power_switch.mosfet[MOSFET:Q]-2-*.tester.vbus[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-1-*.tester.vbus[2].indicator.power_switch.mosfet[MOSFET:Q]-2-*.tester.vbus[2].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-1-*.tester.vbus[3].indicator.power_switch.mosfet[MOSFET:Q]-2-*.tester.vbus[3].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-1) 
+            (node 
+                (ref *.psu.configuration_resistors[0][Resistor:5.1kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.psu.configuration_resistors[1][Resistor:5.1kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A1)) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A12)) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B12)) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B1)) 
+            (node 
+                (ref *.tester.cc1.indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.cc1.indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.cc2.indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.cc2.indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.d1[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.d1[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.d1[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.d1[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.d2[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.d2[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.d2[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.d2[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.gnd[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.gnd[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.gnd[2].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.gnd[3].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.pair1_rx1[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.pair1_rx1[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair1_rx1[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.pair1_rx1[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair2_rx2[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.pair2_rx2[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair2_rx2[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.pair2_rx2[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair3_tx1[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.pair3_tx1[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair3_tx1[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.pair3_tx1[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair4_tx2[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.pair4_tx2[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair4_tx2[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.pair4_tx2[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.sbu1.indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.sbu1.indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.sbu2.indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.sbu2.indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.shield.indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin 0)) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A1)) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B12)) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A12)) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B1)) 
+            (node 
+                (ref *.tester.vbus[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.vbus[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.vbus[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.vbus[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.vbus[2].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.vbus[2].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.vbus[3].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.vbus[3].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 1))) 
+        (net 
+            (code 2) 
+            (name *.psu.configuration_resistors[0][Resistor:5.1kΩ]-2-*.psu.usb[USB_Type_C_Receptacle_24_pin:x]-A5) 
+            (node 
+                (ref *.psu.configuration_resistors[0][Resistor:5.1kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A5))) 
+        (net 
+            (code 3) 
+            (name *.psu.configuration_resistors[1][Resistor:5.1kΩ]-2-*.psu.usb[USB_Type_C_Receptacle_24_pin:x]-B5) 
+            (node 
+                (ref *.psu.configuration_resistors[1][Resistor:5.1kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B5))) 
+        (net 
+            (code 4) 
+            (name *.psu.usb[USB_Type_C_Receptacle_24_pin:x]-0) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin 0))) 
+        (net 
+            (code 5) 
+            (name *.psu.usb[USB_Type_C_Receptacle_24_pin:x]-0) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin 0))) 
+        (net 
+            (code 6) 
+            (name *.psu.usb[USB_Type_C_Receptacle_24_pin:x]-0) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin 0))) 
+        (net 
+            (code 7) 
+            (name *.psu.usb[USB_Type_C_Receptacle_24_pin:x]-0) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin 0))) 
+        (net 
+            (code 8) 
+            (name *.psu.usb[USB_Type_C_Receptacle_24_pin:x]-A10) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A10))) 
+        (net 
+            (code 9) 
+            (name *.psu.usb[USB_Type_C_Receptacle_24_pin:x]-A11) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A11))) 
+        (net 
+            (code 10) 
+            (name *.psu.usb[USB_Type_C_Receptacle_24_pin:x]-A2) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A2))) 
+        (net 
+            (code 11) 
+            (name *.psu.usb[USB_Type_C_Receptacle_24_pin:x]-A3) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A3))) 
+        (net 
+            (code 12) 
+            (name *.psu.usb[USB_Type_C_Receptacle_24_pin:x]-A4-*.psu.usb[USB_Type_C_Receptacle_24_pin:x]-A9-*.psu.usb[USB_Type_C_Receptacle_24_pin:x]-B4-*.psu.usb[USB_Type_C_Receptacle_24_pin:x]-B9-*.tester.cc1.indicator.led.led[LED:D]-1-*.tester.cc2.indicator.led.led[LED:D]-1-*.tester.d1[0].indicator.led.led[LED:D]-1-*.tester.d1[1].indicator.led.led[LED:D]-1-*.tester.d2[0].indicator.led.led[LED:D]-1-*.tester.d2[1].indicator.led.led[LED:D]-1-*.tester.gnd[0].indicator.power_switch.mosfet[MOSFET:Q]-2-*.tester.gnd[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-1-*.tester.gnd[1].indicator.power_switch.mosfet[MOSFET:Q]-2-*.tester.gnd[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-1-*.tester.gnd[2].indicator.power_switch.mosfet[MOSFET:Q]-2-*.tester.gnd[2].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-1-*.tester.gnd[3].indicator.power_switch.mosfet[MOSFET:Q]-2-*.tester.gnd[3].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-1-*.tester.pair1_rx1[0].indicator.led.led[LED:D]-1-*.tester.pair1_rx1[1].indicator.led.led[LED:D]-1-*.tester.pair2_rx2[0].indicator.led.led[LED:D]-1-*.tester.pair2_rx2[1].indicator.led.led[LED:D]-1-*.tester.pair3_tx1[0].indicator.led.led[LED:D]-1-*.tester.pair3_tx1[1].indicator.led.led[LED:D]-1-*.tester.pair4_tx2[0].indicator.led.led[LED:D]-1-*.tester.pair4_tx2[1].indicator.led.led[LED:D]-1-*.tester.rj45[0][RJ45_Receptacle:x]-1-*.tester.rj45[0][RJ45_Receptacle:x]-2-*.tester.rj45[0][RJ45_Receptacle:x]-3-*.tester.rj45[0][RJ45_Receptacle:x]-4-*.tester.rj45[0][RJ45_Receptacle:x]-5-*.tester.rj45[0][RJ45_Receptacle:x]-6-*.tester.rj45[0][RJ45_Receptacle:x]-7-*.tester.rj45[0][RJ45_Receptacle:x]-8-*.tester.sbu1.indicator.led.led[LED:D]-1-*.tester.sbu2.indicator.led.led[LED:D]-1-*.tester.shield.indicator.power_switch.mosfet[MOSFET:Q]-2-*.tester.shield.indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-1-*.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-A10-*.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-A11-*.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-A2-*.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-A3-*.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-A4-*.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-A5-*.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-A6-*.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-A7-*.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-A8-*.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-A9-*.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-B10-*.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-B11-*.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-B2-*.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-B3-*.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-B4-*.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-B5-*.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-B6-*.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-B7-*.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-B8-*.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-B9-*.tester.vbus[0].indicator.led.led[LED:D]-1-*.tester.vbus[1].indicator.led.led[LED:D]-1-*.tester.vbus[2].indicator.led.led[LED:D]-1-*.tester.vbus[3].indicator.led.led[LED:D]-1) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A4)) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A9)) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B9)) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B4)) 
+            (node 
+                (ref *.tester.cc1.indicator.led.led[LED:D]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.cc2.indicator.led.led[LED:D]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.d1[0].indicator.led.led[LED:D]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.d1[1].indicator.led.led[LED:D]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.d2[0].indicator.led.led[LED:D]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.d2[1].indicator.led.led[LED:D]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.gnd[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.gnd[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.gnd[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.gnd[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.gnd[2].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.gnd[2].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.gnd[3].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.gnd[3].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair1_rx1[0].indicator.led.led[LED:D]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair1_rx1[1].indicator.led.led[LED:D]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair2_rx2[0].indicator.led.led[LED:D]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair2_rx2[1].indicator.led.led[LED:D]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair3_tx1[0].indicator.led.led[LED:D]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair3_tx1[1].indicator.led.led[LED:D]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair4_tx2[0].indicator.led.led[LED:D]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair4_tx2[1].indicator.led.led[LED:D]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.rj45[0][RJ45_Receptacle:x]) 
+                (pin 5)) 
+            (node 
+                (ref *.tester.rj45[0][RJ45_Receptacle:x]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.rj45[0][RJ45_Receptacle:x]) 
+                (pin 6)) 
+            (node 
+                (ref *.tester.rj45[0][RJ45_Receptacle:x]) 
+                (pin 3)) 
+            (node 
+                (ref *.tester.rj45[0][RJ45_Receptacle:x]) 
+                (pin 7)) 
+            (node 
+                (ref *.tester.rj45[0][RJ45_Receptacle:x]) 
+                (pin 4)) 
+            (node 
+                (ref *.tester.rj45[0][RJ45_Receptacle:x]) 
+                (pin 8)) 
+            (node 
+                (ref *.tester.rj45[0][RJ45_Receptacle:x]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.sbu1.indicator.led.led[LED:D]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.sbu2.indicator.led.led[LED:D]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.shield.indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.shield.indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B4)) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B11)) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A9)) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A7)) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B6)) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B3)) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B10)) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A8)) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B5)) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A11)) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B2)) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B8)) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B9)) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A2)) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A5)) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A3)) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A10)) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B7)) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A4)) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A6)) 
+            (node 
+                (ref *.tester.vbus[0].indicator.led.led[LED:D]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.vbus[1].indicator.led.led[LED:D]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.vbus[2].indicator.led.led[LED:D]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.vbus[3].indicator.led.led[LED:D]) 
+                (pin 1))) 
+        (net 
+            (code 13) 
+            (name *.psu.usb[USB_Type_C_Receptacle_24_pin:x]-A6) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A6))) 
+        (net 
+            (code 14) 
+            (name *.psu.usb[USB_Type_C_Receptacle_24_pin:x]-A7) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A7))) 
+        (net 
+            (code 15) 
+            (name *.psu.usb[USB_Type_C_Receptacle_24_pin:x]-A8) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A8))) 
+        (net 
+            (code 16) 
+            (name *.psu.usb[USB_Type_C_Receptacle_24_pin:x]-B10) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B10))) 
+        (net 
+            (code 17) 
+            (name *.psu.usb[USB_Type_C_Receptacle_24_pin:x]-B11) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B11))) 
+        (net 
+            (code 18) 
+            (name *.psu.usb[USB_Type_C_Receptacle_24_pin:x]-B2) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B2))) 
+        (net 
+            (code 19) 
+            (name *.psu.usb[USB_Type_C_Receptacle_24_pin:x]-B3) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B3))) 
+        (net 
+            (code 20) 
+            (name *.psu.usb[USB_Type_C_Receptacle_24_pin:x]-B6) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B6))) 
+        (net 
+            (code 21) 
+            (name *.psu.usb[USB_Type_C_Receptacle_24_pin:x]-B7) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B7))) 
+        (net 
+            (code 22) 
+            (name *.psu.usb[USB_Type_C_Receptacle_24_pin:x]-B8) 
+            (node 
+                (ref *.psu.usb[USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B8))) 
+        (net 
+            (code 23) 
+            (name *.tester.cc1.indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-1-*.tester.cc1.indicator.led.led[LED:D]-2) 
+            (node 
+                (ref *.tester.cc1.indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.cc1.indicator.led.led[LED:D]) 
+                (pin 2))) 
+        (net 
+            (code 24) 
+            (name *.tester.cc1.indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-2-*.tester.cc1.indicator.power_switch.mosfet[MOSFET:Q]-3) 
+            (node 
+                (ref *.tester.cc1.indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.cc1.indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 3))) 
+        (net 
+            (code 25) 
+            (name *.tester.cc1.indicator.power_switch.mosfet[MOSFET:Q]-1-*.tester.cc1.indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-2-*.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-A5) 
+            (node 
+                (ref *.tester.cc1.indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.cc1.indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A5))) 
+        (net 
+            (code 26) 
+            (name *.tester.cc2.indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-1-*.tester.cc2.indicator.led.led[LED:D]-2) 
+            (node 
+                (ref *.tester.cc2.indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.cc2.indicator.led.led[LED:D]) 
+                (pin 2))) 
+        (net 
+            (code 27) 
+            (name *.tester.cc2.indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-2-*.tester.cc2.indicator.power_switch.mosfet[MOSFET:Q]-3) 
+            (node 
+                (ref *.tester.cc2.indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.cc2.indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 3))) 
+        (net 
+            (code 28) 
+            (name *.tester.cc2.indicator.power_switch.mosfet[MOSFET:Q]-1-*.tester.cc2.indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-2-*.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-B5) 
+            (node 
+                (ref *.tester.cc2.indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.cc2.indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B5))) 
+        (net 
+            (code 29) 
+            (name *.tester.d1[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-1-*.tester.d1[0].indicator.led.led[LED:D]-2) 
+            (node 
+                (ref *.tester.d1[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.d1[0].indicator.led.led[LED:D]) 
+                (pin 2))) 
+        (net 
+            (code 30) 
+            (name *.tester.d1[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-2-*.tester.d1[0].indicator.power_switch.mosfet[MOSFET:Q]-3) 
+            (node 
+                (ref *.tester.d1[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.d1[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 3))) 
+        (net 
+            (code 31) 
+            (name *.tester.d1[0].indicator.power_switch.mosfet[MOSFET:Q]-1-*.tester.d1[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-2-*.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-A6) 
+            (node 
+                (ref *.tester.d1[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.d1[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A6))) 
+        (net 
+            (code 32) 
+            (name *.tester.d1[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-1-*.tester.d1[1].indicator.led.led[LED:D]-2) 
+            (node 
+                (ref *.tester.d1[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.d1[1].indicator.led.led[LED:D]) 
+                (pin 2))) 
+        (net 
+            (code 33) 
+            (name *.tester.d1[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-2-*.tester.d1[1].indicator.power_switch.mosfet[MOSFET:Q]-3) 
+            (node 
+                (ref *.tester.d1[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.d1[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 3))) 
+        (net 
+            (code 34) 
+            (name *.tester.d1[1].indicator.power_switch.mosfet[MOSFET:Q]-1-*.tester.d1[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-2-*.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-A7) 
+            (node 
+                (ref *.tester.d1[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.d1[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A7))) 
+        (net 
+            (code 35) 
+            (name *.tester.d2[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-1-*.tester.d2[0].indicator.led.led[LED:D]-2) 
+            (node 
+                (ref *.tester.d2[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.d2[0].indicator.led.led[LED:D]) 
+                (pin 2))) 
+        (net 
+            (code 36) 
+            (name *.tester.d2[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-2-*.tester.d2[0].indicator.power_switch.mosfet[MOSFET:Q]-3) 
+            (node 
+                (ref *.tester.d2[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.d2[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 3))) 
+        (net 
+            (code 37) 
+            (name *.tester.d2[0].indicator.power_switch.mosfet[MOSFET:Q]-1-*.tester.d2[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-2-*.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-B6) 
+            (node 
+                (ref *.tester.d2[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.d2[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B6))) 
+        (net 
+            (code 38) 
+            (name *.tester.d2[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-1-*.tester.d2[1].indicator.led.led[LED:D]-2) 
+            (node 
+                (ref *.tester.d2[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.d2[1].indicator.led.led[LED:D]) 
+                (pin 2))) 
+        (net 
+            (code 39) 
+            (name *.tester.d2[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-2-*.tester.d2[1].indicator.power_switch.mosfet[MOSFET:Q]-3) 
+            (node 
+                (ref *.tester.d2[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.d2[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 3))) 
+        (net 
+            (code 40) 
+            (name *.tester.d2[1].indicator.power_switch.mosfet[MOSFET:Q]-1-*.tester.d2[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-2-*.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-B7) 
+            (node 
+                (ref *.tester.d2[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.d2[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B7))) 
+        (net 
+            (code 41) 
+            (name *.tester.gnd[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-1-*.tester.gnd[0].indicator.led.led[LED:D]-2) 
+            (node 
+                (ref *.tester.gnd[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.gnd[0].indicator.led.led[LED:D]) 
+                (pin 2))) 
+        (net 
+            (code 42) 
+            (name *.tester.gnd[0].indicator.led.led[LED:D]-1-*.tester.gnd[0].indicator.power_switch.mosfet[MOSFET:Q]-3) 
+            (node 
+                (ref *.tester.gnd[0].indicator.led.led[LED:D]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.gnd[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 3))) 
+        (net 
+            (code 43) 
+            (name *.tester.gnd[0].indicator.power_switch.mosfet[MOSFET:Q]-1-*.tester.gnd[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-2-*.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-A1) 
+            (node 
+                (ref *.tester.gnd[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.gnd[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A1))) 
+        (net 
+            (code 44) 
+            (name *.tester.gnd[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-1-*.tester.gnd[1].indicator.led.led[LED:D]-2) 
+            (node 
+                (ref *.tester.gnd[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.gnd[1].indicator.led.led[LED:D]) 
+                (pin 2))) 
+        (net 
+            (code 45) 
+            (name *.tester.gnd[1].indicator.led.led[LED:D]-1-*.tester.gnd[1].indicator.power_switch.mosfet[MOSFET:Q]-3) 
+            (node 
+                (ref *.tester.gnd[1].indicator.led.led[LED:D]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.gnd[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 3))) 
+        (net 
+            (code 46) 
+            (name *.tester.gnd[1].indicator.power_switch.mosfet[MOSFET:Q]-1-*.tester.gnd[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-2-*.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-A12) 
+            (node 
+                (ref *.tester.gnd[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.gnd[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A12))) 
+        (net 
+            (code 47) 
+            (name *.tester.gnd[2].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-1-*.tester.gnd[2].indicator.led.led[LED:D]-2) 
+            (node 
+                (ref *.tester.gnd[2].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.gnd[2].indicator.led.led[LED:D]) 
+                (pin 2))) 
+        (net 
+            (code 48) 
+            (name *.tester.gnd[2].indicator.led.led[LED:D]-1-*.tester.gnd[2].indicator.power_switch.mosfet[MOSFET:Q]-3) 
+            (node 
+                (ref *.tester.gnd[2].indicator.led.led[LED:D]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.gnd[2].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 3))) 
+        (net 
+            (code 49) 
+            (name *.tester.gnd[2].indicator.power_switch.mosfet[MOSFET:Q]-1-*.tester.gnd[2].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-2-*.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-B1) 
+            (node 
+                (ref *.tester.gnd[2].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.gnd[2].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B1))) 
+        (net 
+            (code 50) 
+            (name *.tester.gnd[3].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-1-*.tester.gnd[3].indicator.led.led[LED:D]-2) 
+            (node 
+                (ref *.tester.gnd[3].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.gnd[3].indicator.led.led[LED:D]) 
+                (pin 2))) 
+        (net 
+            (code 51) 
+            (name *.tester.gnd[3].indicator.led.led[LED:D]-1-*.tester.gnd[3].indicator.power_switch.mosfet[MOSFET:Q]-3) 
+            (node 
+                (ref *.tester.gnd[3].indicator.led.led[LED:D]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.gnd[3].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 3))) 
+        (net 
+            (code 52) 
+            (name *.tester.gnd[3].indicator.power_switch.mosfet[MOSFET:Q]-1-*.tester.gnd[3].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-2-*.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-B12) 
+            (node 
+                (ref *.tester.gnd[3].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.gnd[3].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B12))) 
+        (net 
+            (code 53) 
+            (name *.tester.pair1_rx1[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-1-*.tester.pair1_rx1[0].indicator.led.led[LED:D]-2) 
+            (node 
+                (ref *.tester.pair1_rx1[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair1_rx1[0].indicator.led.led[LED:D]) 
+                (pin 2))) 
+        (net 
+            (code 54) 
+            (name *.tester.pair1_rx1[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-2-*.tester.pair1_rx1[0].indicator.power_switch.mosfet[MOSFET:Q]-3) 
+            (node 
+                (ref *.tester.pair1_rx1[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.pair1_rx1[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 3))) 
+        (net 
+            (code 55) 
+            (name *.tester.pair1_rx1[0].indicator.power_switch.mosfet[MOSFET:Q]-1-*.tester.pair1_rx1[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-2-*.tester.rj45[1][RJ45_Receptacle:x]-1-*.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-B11) 
+            (node 
+                (ref *.tester.pair1_rx1[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair1_rx1[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.rj45[1][RJ45_Receptacle:x]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B11))) 
+        (net 
+            (code 56) 
+            (name *.tester.pair1_rx1[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-1-*.tester.pair1_rx1[1].indicator.led.led[LED:D]-2) 
+            (node 
+                (ref *.tester.pair1_rx1[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair1_rx1[1].indicator.led.led[LED:D]) 
+                (pin 2))) 
+        (net 
+            (code 57) 
+            (name *.tester.pair1_rx1[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-2-*.tester.pair1_rx1[1].indicator.power_switch.mosfet[MOSFET:Q]-3) 
+            (node 
+                (ref *.tester.pair1_rx1[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.pair1_rx1[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 3))) 
+        (net 
+            (code 58) 
+            (name *.tester.pair1_rx1[1].indicator.power_switch.mosfet[MOSFET:Q]-1-*.tester.pair1_rx1[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-2-*.tester.rj45[1][RJ45_Receptacle:x]-2-*.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-B10) 
+            (node 
+                (ref *.tester.pair1_rx1[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair1_rx1[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.rj45[1][RJ45_Receptacle:x]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B10))) 
+        (net 
+            (code 59) 
+            (name *.tester.pair2_rx2[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-1-*.tester.pair2_rx2[0].indicator.led.led[LED:D]-2) 
+            (node 
+                (ref *.tester.pair2_rx2[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair2_rx2[0].indicator.led.led[LED:D]) 
+                (pin 2))) 
+        (net 
+            (code 60) 
+            (name *.tester.pair2_rx2[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-2-*.tester.pair2_rx2[0].indicator.power_switch.mosfet[MOSFET:Q]-3) 
+            (node 
+                (ref *.tester.pair2_rx2[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.pair2_rx2[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 3))) 
+        (net 
+            (code 61) 
+            (name *.tester.pair2_rx2[0].indicator.power_switch.mosfet[MOSFET:Q]-1-*.tester.pair2_rx2[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-2-*.tester.rj45[1][RJ45_Receptacle:x]-3-*.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-A11) 
+            (node 
+                (ref *.tester.pair2_rx2[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair2_rx2[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.rj45[1][RJ45_Receptacle:x]) 
+                (pin 3)) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A11))) 
+        (net 
+            (code 62) 
+            (name *.tester.pair2_rx2[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-1-*.tester.pair2_rx2[1].indicator.led.led[LED:D]-2) 
+            (node 
+                (ref *.tester.pair2_rx2[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair2_rx2[1].indicator.led.led[LED:D]) 
+                (pin 2))) 
+        (net 
+            (code 63) 
+            (name *.tester.pair2_rx2[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-2-*.tester.pair2_rx2[1].indicator.power_switch.mosfet[MOSFET:Q]-3) 
+            (node 
+                (ref *.tester.pair2_rx2[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.pair2_rx2[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 3))) 
+        (net 
+            (code 64) 
+            (name *.tester.pair2_rx2[1].indicator.power_switch.mosfet[MOSFET:Q]-1-*.tester.pair2_rx2[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-2-*.tester.rj45[1][RJ45_Receptacle:x]-4-*.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-A10) 
+            (node 
+                (ref *.tester.pair2_rx2[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair2_rx2[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.rj45[1][RJ45_Receptacle:x]) 
+                (pin 4)) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A10))) 
+        (net 
+            (code 65) 
+            (name *.tester.pair3_tx1[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-1-*.tester.pair3_tx1[0].indicator.led.led[LED:D]-2) 
+            (node 
+                (ref *.tester.pair3_tx1[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair3_tx1[0].indicator.led.led[LED:D]) 
+                (pin 2))) 
+        (net 
+            (code 66) 
+            (name *.tester.pair3_tx1[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-2-*.tester.pair3_tx1[0].indicator.power_switch.mosfet[MOSFET:Q]-3) 
+            (node 
+                (ref *.tester.pair3_tx1[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.pair3_tx1[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 3))) 
+        (net 
+            (code 67) 
+            (name *.tester.pair3_tx1[0].indicator.power_switch.mosfet[MOSFET:Q]-1-*.tester.pair3_tx1[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-2-*.tester.rj45[1][RJ45_Receptacle:x]-5-*.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-A2) 
+            (node 
+                (ref *.tester.pair3_tx1[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair3_tx1[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.rj45[1][RJ45_Receptacle:x]) 
+                (pin 5)) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A2))) 
+        (net 
+            (code 68) 
+            (name *.tester.pair3_tx1[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-1-*.tester.pair3_tx1[1].indicator.led.led[LED:D]-2) 
+            (node 
+                (ref *.tester.pair3_tx1[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair3_tx1[1].indicator.led.led[LED:D]) 
+                (pin 2))) 
+        (net 
+            (code 69) 
+            (name *.tester.pair3_tx1[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-2-*.tester.pair3_tx1[1].indicator.power_switch.mosfet[MOSFET:Q]-3) 
+            (node 
+                (ref *.tester.pair3_tx1[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.pair3_tx1[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 3))) 
+        (net 
+            (code 70) 
+            (name *.tester.pair3_tx1[1].indicator.power_switch.mosfet[MOSFET:Q]-1-*.tester.pair3_tx1[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-2-*.tester.rj45[1][RJ45_Receptacle:x]-6-*.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-A3) 
+            (node 
+                (ref *.tester.pair3_tx1[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair3_tx1[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.rj45[1][RJ45_Receptacle:x]) 
+                (pin 6)) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A3))) 
+        (net 
+            (code 71) 
+            (name *.tester.pair4_tx2[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-1-*.tester.pair4_tx2[0].indicator.led.led[LED:D]-2) 
+            (node 
+                (ref *.tester.pair4_tx2[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair4_tx2[0].indicator.led.led[LED:D]) 
+                (pin 2))) 
+        (net 
+            (code 72) 
+            (name *.tester.pair4_tx2[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-2-*.tester.pair4_tx2[0].indicator.power_switch.mosfet[MOSFET:Q]-3) 
+            (node 
+                (ref *.tester.pair4_tx2[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.pair4_tx2[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 3))) 
+        (net 
+            (code 73) 
+            (name *.tester.pair4_tx2[0].indicator.power_switch.mosfet[MOSFET:Q]-1-*.tester.pair4_tx2[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-2-*.tester.rj45[1][RJ45_Receptacle:x]-7-*.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-B2) 
+            (node 
+                (ref *.tester.pair4_tx2[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair4_tx2[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.rj45[1][RJ45_Receptacle:x]) 
+                (pin 7)) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B2))) 
+        (net 
+            (code 74) 
+            (name *.tester.pair4_tx2[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-1-*.tester.pair4_tx2[1].indicator.led.led[LED:D]-2) 
+            (node 
+                (ref *.tester.pair4_tx2[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair4_tx2[1].indicator.led.led[LED:D]) 
+                (pin 2))) 
+        (net 
+            (code 75) 
+            (name *.tester.pair4_tx2[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-2-*.tester.pair4_tx2[1].indicator.power_switch.mosfet[MOSFET:Q]-3) 
+            (node 
+                (ref *.tester.pair4_tx2[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.pair4_tx2[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 3))) 
+        (net 
+            (code 76) 
+            (name *.tester.pair4_tx2[1].indicator.power_switch.mosfet[MOSFET:Q]-1-*.tester.pair4_tx2[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-2-*.tester.rj45[1][RJ45_Receptacle:x]-8-*.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-B3) 
+            (node 
+                (ref *.tester.pair4_tx2[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.pair4_tx2[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.rj45[1][RJ45_Receptacle:x]) 
+                (pin 8)) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B3))) 
+        (net 
+            (code 77) 
+            (name *.tester.rj45[0][RJ45_Receptacle:x]-0) 
+            (node 
+                (ref *.tester.rj45[0][RJ45_Receptacle:x]) 
+                (pin 0))) 
+        (net 
+            (code 78) 
+            (name *.tester.rj45[0][RJ45_Receptacle:x]-0) 
+            (node 
+                (ref *.tester.rj45[0][RJ45_Receptacle:x]) 
+                (pin 0))) 
+        (net 
+            (code 79) 
+            (name *.tester.rj45[0][RJ45_Receptacle:x]-10) 
+            (node 
+                (ref *.tester.rj45[0][RJ45_Receptacle:x]) 
+                (pin 10))) 
+        (net 
+            (code 80) 
+            (name *.tester.rj45[0][RJ45_Receptacle:x]-11) 
+            (node 
+                (ref *.tester.rj45[0][RJ45_Receptacle:x]) 
+                (pin 11))) 
+        (net 
+            (code 81) 
+            (name *.tester.rj45[0][RJ45_Receptacle:x]-12) 
+            (node 
+                (ref *.tester.rj45[0][RJ45_Receptacle:x]) 
+                (pin 12))) 
+        (net 
+            (code 82) 
+            (name *.tester.rj45[0][RJ45_Receptacle:x]-9) 
+            (node 
+                (ref *.tester.rj45[0][RJ45_Receptacle:x]) 
+                (pin 9))) 
+        (net 
+            (code 83) 
+            (name *.tester.rj45[1][RJ45_Receptacle:x]-0) 
+            (node 
+                (ref *.tester.rj45[1][RJ45_Receptacle:x]) 
+                (pin 0))) 
+        (net 
+            (code 84) 
+            (name *.tester.rj45[1][RJ45_Receptacle:x]-0) 
+            (node 
+                (ref *.tester.rj45[1][RJ45_Receptacle:x]) 
+                (pin 0))) 
+        (net 
+            (code 85) 
+            (name *.tester.rj45[1][RJ45_Receptacle:x]-10) 
+            (node 
+                (ref *.tester.rj45[1][RJ45_Receptacle:x]) 
+                (pin 10))) 
+        (net 
+            (code 86) 
+            (name *.tester.rj45[1][RJ45_Receptacle:x]-11) 
+            (node 
+                (ref *.tester.rj45[1][RJ45_Receptacle:x]) 
+                (pin 11))) 
+        (net 
+            (code 87) 
+            (name *.tester.rj45[1][RJ45_Receptacle:x]-12) 
+            (node 
+                (ref *.tester.rj45[1][RJ45_Receptacle:x]) 
+                (pin 12))) 
+        (net 
+            (code 88) 
+            (name *.tester.rj45[1][RJ45_Receptacle:x]-9) 
+            (node 
+                (ref *.tester.rj45[1][RJ45_Receptacle:x]) 
+                (pin 9))) 
+        (net 
+            (code 89) 
+            (name *.tester.sbu1.indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-1-*.tester.sbu1.indicator.led.led[LED:D]-2) 
+            (node 
+                (ref *.tester.sbu1.indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.sbu1.indicator.led.led[LED:D]) 
+                (pin 2))) 
+        (net 
+            (code 90) 
+            (name *.tester.sbu1.indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-2-*.tester.sbu1.indicator.power_switch.mosfet[MOSFET:Q]-3) 
+            (node 
+                (ref *.tester.sbu1.indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.sbu1.indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 3))) 
+        (net 
+            (code 91) 
+            (name *.tester.sbu1.indicator.power_switch.mosfet[MOSFET:Q]-1-*.tester.sbu1.indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-2-*.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-A8) 
+            (node 
+                (ref *.tester.sbu1.indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.sbu1.indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A8))) 
+        (net 
+            (code 92) 
+            (name *.tester.sbu2.indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-1-*.tester.sbu2.indicator.led.led[LED:D]-2) 
+            (node 
+                (ref *.tester.sbu2.indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.sbu2.indicator.led.led[LED:D]) 
+                (pin 2))) 
+        (net 
+            (code 93) 
+            (name *.tester.sbu2.indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-2-*.tester.sbu2.indicator.power_switch.mosfet[MOSFET:Q]-3) 
+            (node 
+                (ref *.tester.sbu2.indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.sbu2.indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 3))) 
+        (net 
+            (code 94) 
+            (name *.tester.sbu2.indicator.power_switch.mosfet[MOSFET:Q]-1-*.tester.sbu2.indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-2-*.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-B8) 
+            (node 
+                (ref *.tester.sbu2.indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.sbu2.indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B8))) 
+        (net 
+            (code 95) 
+            (name *.tester.shield.indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-1-*.tester.shield.indicator.led.led[LED:D]-2) 
+            (node 
+                (ref *.tester.shield.indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.shield.indicator.led.led[LED:D]) 
+                (pin 2))) 
+        (net 
+            (code 96) 
+            (name *.tester.shield.indicator.led.led[LED:D]-1-*.tester.shield.indicator.power_switch.mosfet[MOSFET:Q]-3) 
+            (node 
+                (ref *.tester.shield.indicator.led.led[LED:D]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.shield.indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 3))) 
+        (net 
+            (code 97) 
+            (name *.tester.shield.indicator.power_switch.mosfet[MOSFET:Q]-1-*.tester.shield.indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-2-*.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-0) 
+            (node 
+                (ref *.tester.shield.indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.shield.indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin 0))) 
+        (net 
+            (code 98) 
+            (name *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-0) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin 0))) 
+        (net 
+            (code 99) 
+            (name *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-0) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin 0))) 
+        (net 
+            (code 100) 
+            (name *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]-0) 
+            (node 
+                (ref *.tester.usb_c[0][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin 0))) 
+        (net 
+            (code 101) 
+            (name *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-0) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin 0))) 
+        (net 
+            (code 102) 
+            (name *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-0) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin 0))) 
+        (net 
+            (code 103) 
+            (name *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-0) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin 0))) 
+        (net 
+            (code 104) 
+            (name *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-A4-*.tester.vbus[0].indicator.power_switch.mosfet[MOSFET:Q]-1-*.tester.vbus[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-2) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A4)) 
+            (node 
+                (ref *.tester.vbus[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.vbus[0].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 2))) 
+        (net 
+            (code 105) 
+            (name *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-A9-*.tester.vbus[1].indicator.power_switch.mosfet[MOSFET:Q]-1-*.tester.vbus[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-2) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin A9)) 
+            (node 
+                (ref *.tester.vbus[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.vbus[1].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 2))) 
+        (net 
+            (code 106) 
+            (name *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-B4-*.tester.vbus[2].indicator.power_switch.mosfet[MOSFET:Q]-1-*.tester.vbus[2].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-2) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B4)) 
+            (node 
+                (ref *.tester.vbus[2].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.vbus[2].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 2))) 
+        (net 
+            (code 107) 
+            (name *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]-B9-*.tester.vbus[3].indicator.power_switch.mosfet[MOSFET:Q]-1-*.tester.vbus[3].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]-2) 
+            (node 
+                (ref *.tester.usb_c[1][USB_Type_C_Receptacle_24_pin:x]) 
+                (pin B9)) 
+            (node 
+                (ref *.tester.vbus[3].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.vbus[3].indicator.power_switch.pull_resistor[Resistor:100.0kΩ]) 
+                (pin 2))) 
+        (net 
+            (code 108) 
+            (name *.tester.vbus[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-1-*.tester.vbus[0].indicator.led.led[LED:D]-2) 
+            (node 
+                (ref *.tester.vbus[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.vbus[0].indicator.led.led[LED:D]) 
+                (pin 2))) 
+        (net 
+            (code 109) 
+            (name *.tester.vbus[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-2-*.tester.vbus[0].indicator.power_switch.mosfet[MOSFET:Q]-3) 
+            (node 
+                (ref *.tester.vbus[0].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.vbus[0].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 3))) 
+        (net 
+            (code 110) 
+            (name *.tester.vbus[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-1-*.tester.vbus[1].indicator.led.led[LED:D]-2) 
+            (node 
+                (ref *.tester.vbus[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.vbus[1].indicator.led.led[LED:D]) 
+                (pin 2))) 
+        (net 
+            (code 111) 
+            (name *.tester.vbus[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-2-*.tester.vbus[1].indicator.power_switch.mosfet[MOSFET:Q]-3) 
+            (node 
+                (ref *.tester.vbus[1].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.vbus[1].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 3))) 
+        (net 
+            (code 112) 
+            (name *.tester.vbus[2].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-1-*.tester.vbus[2].indicator.led.led[LED:D]-2) 
+            (node 
+                (ref *.tester.vbus[2].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.vbus[2].indicator.led.led[LED:D]) 
+                (pin 2))) 
+        (net 
+            (code 113) 
+            (name *.tester.vbus[2].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-2-*.tester.vbus[2].indicator.power_switch.mosfet[MOSFET:Q]-3) 
+            (node 
+                (ref *.tester.vbus[2].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.vbus[2].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 3))) 
+        (net 
+            (code 114) 
+            (name *.tester.vbus[3].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-1-*.tester.vbus[3].indicator.led.led[LED:D]-2) 
+            (node 
+                (ref *.tester.vbus[3].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 1)) 
+            (node 
+                (ref *.tester.vbus[3].indicator.led.led[LED:D]) 
+                (pin 2))) 
+        (net 
+            (code 115) 
+            (name *.tester.vbus[3].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]-2-*.tester.vbus[3].indicator.power_switch.mosfet[MOSFET:Q]-3) 
+            (node 
+                (ref *.tester.vbus[3].indicator.led.current_limiting_resistor[Resistor:1.0kΩ]) 
+                (pin 2)) 
+            (node 
+                (ref *.tester.vbus[3].indicator.power_switch.mosfet[MOSFET:Q]) 
+                (pin 3)))))
